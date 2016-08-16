@@ -62,7 +62,7 @@ rualpe-ws:seene-dropbox-experiments paf$
 
 ```
 rualpe-ws:seene-dropbox-experiments paf$ . auth.sh
-rualpe-ws:seene-dropbox-experiments paf$ curl -X POST https://content.dropboxapi.com/2/sharing/get_shared_link_file     —header "Authorization: Bearer $bearer"     —header "Dropbox-API-Arg: {\"url\": \"https://www.dropbox.com/sh/1h3zy9jm4nftelm/AABAdhug5I_8NO8z5-N1lpVOa\",\"path\": \"/seene_20160724_ypLCSx.jpg\"}" > /tmp/seene_20160724_ypLCSx.jpg
+rualpe-ws:seene-dropbox-experiments paf$ curl -X POST https://content.dropboxapi.com/2/sharing/get_shared_link_file     --header "Authorization: Bearer $bearer"     --header "Dropbox-API-Arg: {\"url\": \"https://www.dropbox.com/sh/1h3zy9jm4nftelm/AABAdhug5I_8NO8z5-N1lpVOa\",\"path\": \"/seene_20160724_ypLCSx.jpg\"}" > /tmp/seene_20160724_ypLCSx.jpg
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                  Dload  Upload   Total   Spent    Left  Speed
 100 1025k  100 1025k    0     0  43576      0  0:00:24  0:00:24 —:--:—  119k
