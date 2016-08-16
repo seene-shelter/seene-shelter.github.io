@@ -99,3 +99,11 @@ rualpe-ws:seene-dropbox-experiments paf$ curl -X POST https://content.dropboxapi
 rualpe-ws:seene-dropbox-experiments paf$ open /tmp/seene_20160724_ypLCSx.jpg
 rualpe-ws:seene-dropbox-experiments paf$
 ```
+
+### Link to comment public folder file
+
+Just concatenating public link with a name of item like this <public url>?preview=<path to item inside without leading /> gives a link one can go an comment. 
+
+[Example](https://www.dropbox.com/sh/1h3zy9jm4nftelm/AABAdhug5I_8NO8z5-N1lpVOa?preview=seene_20160724_ypLCSx.jpg)
+
+(there is an API to generate link like that, but couldn't not figure it out; so this is a bit fragile -- Dropbox may change [unlikely!] this URL convention and this will break)
