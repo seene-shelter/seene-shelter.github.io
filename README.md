@@ -6,9 +6,7 @@ One-page Web 2.0 project without backend.
 
 Dropbox for backend and local storage for list of friends to follow.
 
-List of all users to be kept inside this app, manually in format:
-
- user -> her public dropbox folder 
+List of all users to be kept [inside this app](users.txt)
 
 Original JavaScript viewer with small changes can be used to show content.
 
