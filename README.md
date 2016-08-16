@@ -6,9 +6,13 @@ One-page Web 2.0 project without backend.
 
 Dropbox for backend and local storage for list of friends to follow.
 
-List of all users to be kept [inside this app](users.txt)
+List of all users to be kept [here](users.txt) (hardcoded for now).
 
 Original JavaScript viewer with small changes can be used to show content.
+
+Dropbox can be used for comments. 
+
+No likes (yet).
 
 ## Progress
 
