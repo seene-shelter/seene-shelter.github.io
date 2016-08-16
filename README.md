@@ -16,15 +16,15 @@ No likes (yet).
 
 ## Progress
 
-| What                           | Status  |
-| -------------------------------|---------|
+| What                           | Status  | Notes                                        |
+| -------------------------------|---------|----------------------------------------------|
 | Design the web app             | TODO    |
 | Viewer to work separately      | TODO    |
 | Viewer to accept export format | TODO    |
 | Implement the web app          | TODO    |
-| Get good domain name           | TODO    |
-| Host the web app               | TDOO    |
-| Dropbox API                    | DONE    |
+| Get good domain name           | DONE    | github.io can host stuff for now, no need to pay or register |
+| Host the web app               | DONE    | https://seene-club.github.io/seene-shelter/  |
+| Dropbox API                    | DONE    | [results](dropbox.md)                        |
 
 ## Design outline
 
@@ -86,4 +86,3 @@ Others
 
 ## Investigations of Dropbox API
 
-[here](dropbox.md)
