@@ -72,7 +72,7 @@ rualpe-ws:seene-dropbox-experiments paf$
 
 ### Link to comment public folder file
 
-Just concatenating public link with a name of item like this <public url>?preview=<path to item inside without leading /> gives a link one can go an comment. 
+Just concatenating link field from first call reply with a name of item like this <link>?preview=<path to item inside without leading /> gives a link one can go an comment. 
 
 [Example](https://www.dropbox.com/sh/1h3zy9jm4nftelm/AABAdhug5I_8NO8z5-N1lpVOa?preview=seene_20160724_ypLCSx.jpg)
 
