@@ -14,7 +14,7 @@ List of all users to be kept inside this app, manually in format:
 
 TODO
 
-Useful hint: link "seene://capture" opens Seene app in capture mode (if it was open before; if not -- just opens the app)
+Useful hint: (this link)[seene://capture] opens Seene app in capture mode (if it was open before; if not -- just opens the app)
 
 ### Reasons
 
@@ -30,4 +30,6 @@ Google Drive has no comments on public folders.
 
 ## Investigations of Dropbox API
 
+Created a dedicated Dropbox user "alexander.petrossian+seene-shelter@gmail.com".
+Created an app "seene-shelter" there, (keys)[auth.sh]
 TODO
