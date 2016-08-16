@@ -14,7 +14,7 @@ List of all users to be kept inside this app, manually in format:
 
 TODO
 
-Useful hint: [this link](seene://capture) opens Seene app in capture mode (if it was open before; if not -- just opens the app)
+Useful hint: "seene://capture" opens Seene app in capture mode (if it was open before; if not -- just opens the app)
 
 ### Reasons
 
