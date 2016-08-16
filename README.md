@@ -82,5 +82,5 @@ Others
 * Google Photo (no; strips depth)
 * Google Disk (yes; exif OK; generates thumbnails, has commends and star APIs)
 * Yandex Disk (Russian company, has English interface; has app; integrated with Yandex Photos; not investigated)
-* Microsoft One Drive (not investigated)
+* Microsoft One Drive (no; no comments on public links)
 
