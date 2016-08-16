@@ -30,10 +30,10 @@ Google Drive has no comments on public folders.
 
 ## Investigations of Dropbox API
 
-[Test public folder](https://www.dropbox.com/sh/1h3zy9jm4nftelm/AABAdhug5I_8NO8z5-N1lpVOa).
-Created a dedicated Dropbox user "alexander.petrossian+seene-shelter@gmail.com".
-Created an app "seene-shelter" there, [keys](auth.sh)
-Created [access token](auth.sh) (TODO: figure out how to make that permanent, if that is needed).
+1. [Test public folder](https://www.dropbox.com/sh/1h3zy9jm4nftelm/AABAdhug5I_8NO8z5-N1lpVOa).
+2. Created a dedicated Dropbox user "alexander.petrossian+seene-shelter@gmail.com".
+3. Created an app "seene-shelter" there, [keys](auth.sh)
+4. Created [access token](auth.sh) (TODO: figure out how to make that permanent, if that is needed).
 
 ### List of public folder
 ````
