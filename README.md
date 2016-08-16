@@ -10,7 +10,21 @@ List of all users to be kept inside this app, manually in format:
 
  user -> her public dropbox folder 
 
-## Design
+Original JavaScript viewer with small changes can be used to show content.
+
+## Progress
+
+| What                           | Status  |
+| -------------------------------|---------|
+| Design the web app             | TODO    |
+| Viewer to work separately      | TODO    |
+| Viewer to accept export format | TODO    |
+| Implement the web app          | TODO    |
+| Get good domain name           | TODO    |
+| Host the web app               | TDOO    |
+| Dropbox API                    | DONE    |
+
+## Design outline
 
 TODO
 
