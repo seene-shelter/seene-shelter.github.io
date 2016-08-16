@@ -84,5 +84,3 @@ Others
 * Yandex Disk (Russian company, has English interface; has app; integrated with Yandex Photos; not investigated)
 * Microsoft One Drive (not investigated)
 
-## Investigations of Dropbox API
-
