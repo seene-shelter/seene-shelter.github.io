@@ -12,6 +12,51 @@ client_id='ksvh099n3t79zqq'
 client_secret='rfkrrfaz0yfwh43'
 bearer='N2XgLc_hpHAAAAAAAAAAD8iARUxDqwcITuOS7PmYGfCuGfNQ_pkhEy4I6ZdQe2Oh'
 
+// thanks, Henry!
+// http://www.henryalgus.com/reading-binary-files-using-jquery-ajax/
+// use this transport for "binary" data type
+$.ajaxTransport("+binary", function(options, originalOptions, jqXHR){
+    // check for conditions and support for blob / arraybuffer response type
+    if (window.FormData && ((options.dataType && (options.dataType == 'binary')) || (options.data && ((window.ArrayBuffer && options.data instanceof ArrayBuffer) || (window.Blob && options.data instanceof Blob)))))
+    {
+        return {
+            // create new XMLHttpRequest
+            send: function(headers, callback){
+		// setup all variables
+                var xhr = new XMLHttpRequest(),
+		url = options.url,
+		type = options.type,
+		async = options.async || true,
+		// blob or arraybuffer. Default is blob
+		dataType = options.responseType || "blob",
+		data = options.data || null,
+		username = options.username || null,
+		password = options.password || null;
+					
+                xhr.addEventListener('load', function(){
+			var data = {};
+			data[options.dataType] = xhr.response;
+			// make callback and send data
+			callback(xhr.status, xhr.statusText, data, xhr.getAllResponseHeaders());
+                });
+ 
+                xhr.open(type, url, async, username, password);
+				
+		// setup custom headers
+		for (var i in headers ) {
+			xhr.setRequestHeader(i, headers[i] );
+		}
+				
+                xhr.responseType = dataType;
+                xhr.send(data);
+            },
+            abort: function(){
+                jqXHR.abort();
+            }
+        };
+    }
+});
+
 function add_image(gallery, public_folder_url, comments_root_url, val) {
 	var name = val.path.substring(1)
 	var a = $('<a/>', {
@@ -35,16 +80,13 @@ function add_image(gallery, public_folder_url, comments_root_url, val) {
 				"path": val.path
 			})
 		},
-		//dataType: 'string',
+		dataType: "binary",
+		processData: false,
 		success: function (data, textStatus) {
 			img.attr('alt', '')
-			//img.attr('src', 'data:image/jpeg;base64,'+window.btoa(encodeURIComponent(data)))
-			img.attr('src', 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQAQMAAAAlPW0iAAAABlBMVEUAAAD///+l2Z/dAAAAM0lEQVR4nGP4/5/h/1+G/58ZDrAz3D/McH8yw83NDDeNGe4Ug9C9zwz3gVLMDA/A6P9/AFGGFyjOXZtQAAAAAElFTkSuQmCC')
+			img.attr('src', URL.createObjectURL(data))
 		}
 	})
-	
-	//img.attr('src')
-	//$('#gallery').append('<img src="data:'+base64_encode(data)+'"')
 }
 
 function list_folder(public_folder_url, gallery) {
