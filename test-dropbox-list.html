@@ -1,0 +1,31 @@
+<head>                                                               
+<script type="text/javascript" src="js/jquery-3.1.0.min.js"></script>
+</head>
+<div id="gallery"/>
+<script type="text/javascript">
+$( document ).ajaxError(function(request, response) {
+		alert("ajaxError: "+JSON.stringify(response))
+		//alert(request)
+});
+
+client_id='ksvh099n3t79zqq'
+client_secret='rfkrrfaz0yfwh43'
+public_folder_url='https://www.dropbox.com/sh/1h3zy9jm4nftelm/AABAdhug5I_8NO8z5-N1lpVOa'
+$.post({
+    url: 'https://api.dropbox.com/1/metadata/link',
+	data: {
+		"client_id": client_id,
+		"client_secret": client_secret,
+		"link": public_folder_url,
+		"list": true
+	},
+    dataType : "json",
+    success: function (data, textStatus) {
+        $.each(data.contents, function(i, val) {
+			if(val.path.endsWith('.jpg')) {
+				$("#gallery").append("<p>"+val.path+"</p>")
+			}
+		});
+    },
+});
+</script>
