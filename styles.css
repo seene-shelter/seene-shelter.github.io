@@ -50,7 +50,7 @@ width: 100%;
 visibility: hidden;
 }
 .custom-file-input::before {
-content: 'Select a Lens Blur image';
+content: 'Select a Seene image';
 }
 .custom-file-input::before, .button{
 color: black;
