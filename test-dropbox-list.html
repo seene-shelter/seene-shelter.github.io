@@ -21,9 +21,12 @@ $.post({
 	},
     dataType : "json",
     success: function (data, textStatus) {
+		comments_root_url = data.link
         $.each(data.contents, function(i, val) {
 			if(val.path.endsWith('.jpg')) {
-				$("#gallery").append("<p>"+val.path+"</p>")
+				$("#gallery").append(val.path, " (",
+					"<a target=_new href="+comments_root_url+"&preview="+val.path.substring(1)+">comment</a>",
+					")<br/>")
 			}
 		});
     },
