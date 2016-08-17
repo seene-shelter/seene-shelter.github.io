@@ -23,15 +23,14 @@ No likes (yet).
 | Viewer to accept export format | TODO    |
 | Implement the web app          | TODO    |
 | Get good domain name           | DONE    | github.io can host stuff for now, no need to pay or register |
-| Host the web app               | DONE    | https://seene-club.github.io/seene-shelter/  |
+| Host the web app               | DONE    | http://seene-shelter.github.io/              |
 | Dropbox API                    | DONE    | [results](dropbox.md)                        |
 
 ## Design outline
 
 Useful hint: "seene://capture" opens Seene app in capture mode (if it was open before; if not -- just opens the app)
 
-User opens, say, 
-http://shelter-seene.co/
+User opens http://seene-shelter.github.io/
 
 And she has an ability to follow any of known users by searching public register and Following them.
 Follow button puts a nickname into a local storage in that browser, not to hosted storage.
@@ -54,17 +53,13 @@ Possible Dropbox public folder structure:
 ## Viewer options
 
 * original viewer, patched to support JPG+XMP
-* https://www.clicktorelease.com/code/depth-player/
+* https://www.clicktorelease.com/code/depth-player/ (already supportes JPG+XMP)
 * new, based on same three.js
 
-Currently incline towards original viewer, it's cool and supports
-* gyro
+Currently incline towards clicktorelease viewer, it supports
 * taps
 * mouse 
-* automatic animation on inactivity
-
-And the only thing it lacks is support of Seene export format (.jpg with XMP inside).
-Support is easy to hack, can be borrowed from clicktorelease project.
+* but does NOT support: gyro (must be done to replicate "the feeling". maybe can be borrowed from original viewer)
 
 ### Storage options
 
@@ -83,4 +78,4 @@ Others
 * Google Disk (yes; exif OK; generates thumbnails, has commends and star APIs)
 * Yandex Disk (Russian company, has English interface; has app; integrated with Yandex Photos; not investigated)
 * Microsoft One Drive (no; no comments on public links)
-
+* Box.com (no; no comments on public links)
