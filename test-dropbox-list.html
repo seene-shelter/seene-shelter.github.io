@@ -1,7 +1,7 @@
 <head>                                                               
 <script type="text/javascript" src="js/jquery-3.1.0.min.js"></script>
 </head>
-<div id="gallery"/>
+<div id="gallery">reading list of files from Dropbox</div>
 <script type="text/javascript">
 $( document ).ajaxError(function(request, response) {
 		alert("ajaxError: "+JSON.stringify(response))
@@ -10,9 +10,9 @@ $( document ).ajaxError(function(request, response) {
 
 client_id='ksvh099n3t79zqq'
 client_secret='rfkrrfaz0yfwh43'
-gallery=$("#gallery")
+bearer='N2XgLc_hpHAAAAAAAAAAD8iARUxDqwcITuOS7PmYGfCuGfNQ_pkhEy4I6ZdQe2Oh'
 
-function add_image(comments_root_url, val) {
+function add_image(gallery, public_folder_url, comments_root_url, val) {
 	var name = val.path.substring(1)
 	var a = $('<a/>', {
 		target: '_new',
@@ -21,15 +21,33 @@ function add_image(comments_root_url, val) {
 	var img = $('<img/>', {
 		width: 300,
 		height: 300,
-		alt: name
+		alt: name+" (loading)"
 	})
 	a.html(img)
-	
 	gallery.append(a) // sync
+	
+	$.post({
+		url: 'https://content.dropboxapi.com/2/sharing/get_shared_link_file',
+		headers: {
+			"Authorization": "Bearer " + bearer,
+			"Dropbox-API-Arg": JSON.stringify({
+				"url": public_folder_url,
+				"path": val.path
+			})
+		},
+		//dataType: 'string',
+		success: function (data, textStatus) {
+			img.attr('alt', '')
+			//img.attr('src', 'data:image/jpeg;base64,'+window.btoa(encodeURIComponent(data)))
+			img.attr('src', 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQAQMAAAAlPW0iAAAABlBMVEUAAAD///+l2Z/dAAAAM0lEQVR4nGP4/5/h/1+G/58ZDrAz3D/McH8yw83NDDeNGe4Ug9C9zwz3gVLMDA/A6P9/AFGGFyjOXZtQAAAAAElFTkSuQmCC')
+		}
+	})
+	
+	//img.attr('src')
 	//$('#gallery').append('<img src="data:'+base64_encode(data)+'"')
 }
 
-function list_folder(public_folder_url) {
+function list_folder(public_folder_url, gallery) {
 	$.post({
 		url: 'https://api.dropbox.com/1/metadata/link',
 		data: {
@@ -40,14 +58,15 @@ function list_folder(public_folder_url) {
 		},
 		dataType : "json",
 		success: function (data, textStatus) {
+			gallery.html('')
 			var comments_root_url = data.link
 			$.each(data.contents, function(i, val) {
 				if(val.path.endsWith('.jpg')) {
-					add_image(comments_root_url, val)
+					add_image(gallery, public_folder_url, comments_root_url, val)
 				}
 			});
 		},
 	});
 }
-list_folder('https://www.dropbox.com/sh/1h3zy9jm4nftelm/AABAdhug5I_8NO8z5-N1lpVOa')
+list_folder('https://www.dropbox.com/sh/1h3zy9jm4nftelm/AABAdhug5I_8NO8z5-N1lpVOa', $("#gallery"))
 </script>
