@@ -75,7 +75,16 @@ var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga
 			<h1>Render mode</h1>
 			<p><input type="button" data-rendermode="solid" value="Solid" class="renderMode button"></input> <input type="button" data-rendermode="point" value="Point cloud" class="renderMode button"></input> <input type="button" data-rendermode="wireframe" value="Wireframe" class="renderMode button"></input></p>
 		</div>
-
+		<div>
+			<h1>Settings</h1>
+			<p>You'll have to reload the model for the changes to be effective.</p>
+			<ul>
+				<li>Smooth mesh: <input type="range" id="smoothRadius" min="0" max="100"></input></li>
+				<li>Quad size: <input type="range" id="quadSize" min="1" max="10"></input></li>
+				<li>Point size: <input type="range" id="pointSize" min="1" max="5"></input></li>
+				<li>Sketchfab token: <input type="text" id="sketchfabToken" ></input></li>
+			</li>
+		</div>
 	</div>
 
 	<div id="container" ></div>
