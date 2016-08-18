@@ -4,15 +4,11 @@
 
 One-page Web 2.0 project without backend.
 
-Dropbox for backend and local storage for list of friends to follow.
+Flickr for backend and local storage and social part (followers, comments, likes).
 
 List of all users to be kept [here](users.txt) (hardcoded for now).
 
 Original JavaScript viewer with small changes can be used to show content.
-
-Dropbox can be used for comments. 
-
-No likes (yet).
 
 ## Progress
 
@@ -25,6 +21,7 @@ No likes (yet).
 | Get good domain name           | DONE    | github.io can host stuff for now, no need to pay or register |
 | Host the web app               | DONE    | http://seene-shelter.github.io/              |
 | Dropbox API                    | DONE    | [see results](dropbox.md)                        |
+| Flickr API                     | TODO    | they have comments and likes!                |
 
 ## Design outline
 
@@ -32,23 +29,7 @@ Useful hint: "seene://capture" opens Seene app in capture mode (if it was open b
 
 User opens http://seene-shelter.github.io/
 
-And she has an ability to follow any of known users by searching public register and Following them.
-Follow button puts a nickname into a local storage in that browser, not to hosted storage.
-
-When opening somebody's profile, site would show maybe similar to Seene profile card.
-Under it shows Seenes from roll/ and link to sets.
-In sets show folder from sets/ and on clicking to set show sets/<set>/ contents.
-
-TODO
-
-## Folder structure
-
-Possible Dropbox public folder structure:
-
- roll/
- sets/
-   portfolio/
-   2016 summer vacation/
+and sees a feed of stuff from people she follows, can like/comment (for now by going to Flickr site/mobile app).
 
 ## Viewer options
 
@@ -64,15 +45,18 @@ Currently incline towards clicktorelease viewer, it supports
 
 ### Storage options
 
-Dropbox is chosen because it is 
-* sufficiently well-known, people might already have an account there
-* free account of 2Gb is enough for about 2K of Seenes, older stuff can be removed or moved to separate account
-* has good API
-* has public links; https://www.dropbox.com/sh/1h3zy9jm4nftelm/AABAdhug5I_8NO8z5-N1lpVOa
-* has comments on public links web and in mobile app (one need Dropbox account to write a comment)
-* has convenient ways of uploading from mobile device (including auto-upload)
+Flickr is chosen because it is 
+* TODO
+* fantastic API, with comments and likes
 
 Others
+* Dropbox
+** sufficiently well-known, people might already have an account there
+** free account of 2Gb is enough for about 2K of Seenes, older stuff can be removed or moved to separate account
+** has good API
+** has public links; https://www.dropbox.com/sh/1h3zy9jm4nftelm/AABAdhug5I_8NO8z5-N1lpVOa
+** has comments on public links web and in mobile app (one need Dropbox account to write a comment)
+** has convenient ways of uploading from mobile device (including auto-upload)
 * Twitter (no; strips depth)
 * Tumblr (no; strips depth)
 * Google Photo (no; strips depth)
