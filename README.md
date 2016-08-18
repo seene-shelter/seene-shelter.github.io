@@ -82,3 +82,5 @@ Others
 * https://Box.com (no; no comments on public links) https://app.box.com/s/sql7s997mhogwbjufss4wd2in6ro05my
 * https://iCloud.com (no; no public links and no comments)
 * https://mega.nz (no; no iOS app; not investigated further)
+* https://cloud.mail.ru/ (no; no comments at all; no documented API (hacks present); 15Gb)
+* http://www.opendrive.com/ (no; no comments)
