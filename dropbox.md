@@ -77,3 +77,9 @@ Just concatenating link field from first call reply with a name of item like thi
 [Example](https://www.dropbox.com/sh/1h3zy9jm4nftelm/AABAdhug5I_8NO8z5-N1lpVOa?preview=seene_20160724_ypLCSx.jpg)
 
 (there is an API to generate link like that, but couldn't not figure it out; so this is a bit fragile -- Dropbox may change [unlikely!] this URL convention and this will break)
+
+ALAS this does not open same in app.
+
+[This does](https://www.dropbox.com/s/5q6zntfe5ogp8jq/seene_20151129_soPmmF.jpg?dl=0)
+
+But I've forgotten how I've obtained this link :) :(
