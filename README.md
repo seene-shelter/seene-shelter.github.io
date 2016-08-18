@@ -24,7 +24,7 @@ No likes (yet).
 | Implement the web app          | TODO    |
 | Get good domain name           | DONE    | github.io can host stuff for now, no need to pay or register |
 | Host the web app               | DONE    | http://seene-shelter.github.io/              |
-| Dropbox API                    | DONE    | [results](dropbox.md)                        |
+| Dropbox API                    | DONE    | [see results](dropbox.md)                        |
 
 ## Design outline
 
@@ -55,11 +55,12 @@ Possible Dropbox public folder structure:
 * original viewer, patched to support JPG+XMP
 * https://www.clicktorelease.com/code/depth-player/ (already supportes JPG+XMP)
 * new, based on same three.js
+* http://depthy.me (uses self-created 3d library pixi.js, and tricky webgl filtering -- potentially best for battery)
 
 Currently incline towards clicktorelease viewer, it supports
 * taps
 * mouse 
-* but does NOT support: gyro (must be done to replicate "the feeling". maybe can be borrowed from original viewer)
+* but does NOT support: gyro (must be done to replicate "the feeling". maybe can be borrowed from original viewer OR depthy)
 
 ### Storage options
 
