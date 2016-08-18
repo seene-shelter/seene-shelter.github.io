@@ -68,7 +68,7 @@ Dropbox is chosen because it is
 * sufficiently well-known, people might already have an account there
 * free account of 2Gb is enough for about 2K of Seenes, older stuff can be removed or moved to separate account
 * has good API
-* has public links
+* has public links; https://www.dropbox.com/sh/1h3zy9jm4nftelm/AABAdhug5I_8NO8z5-N1lpVOa
 * has comments on public links web and in mobile app (one need Dropbox account to write a comment)
 * has convenient ways of uploading from mobile device (including auto-upload)
 
@@ -76,7 +76,9 @@ Others
 * Twitter (no; strips depth)
 * Tumblr (no; strips depth)
 * Google Photo (no; strips depth)
-* Google Disk (yes; exif OK; generates thumbnails, has commends and star APIs)
-* Yandex Disk (Russian company, has English interface; has app; integrated with Yandex Photos; not investigated)
-* Microsoft One Drive (no; no comments on public links)
-* Box.com (no; no comments on public links)
+* Google Drive (no; no comments on public links; exif OK; generates thumbnails, has commends and star APIs) https://drive.google.com/drive/folders/0B8GthpIZqpZrdGtXbU1wTl9BT0E?usp=sharing
+* Yandex Disk (no; no comments on public photos, only on folder itself; exif OK; generates thumbnails, has English interface; has app; integrated with Yandex Photos) http://yadi.sk/d/qxKZvTyRuKaVC
+* Microsoft OneDrive (no; no comments on public links) https://1drv.ms/f/s!AuF-koJa9h5LgQp3aB5vemXNd1dE
+* https://Box.com (no; no comments on public links) https://app.box.com/s/sql7s997mhogwbjufss4wd2in6ro05my
+* https://iCloud.com (no; no public links and no comments)
+* https://mega.nz (no; no iOS app; not investigated further)
