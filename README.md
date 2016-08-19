@@ -2,11 +2,7 @@
 
 ## Idea
 
-One-page Web 2.0 project without backend.
-
-Flickr for backend and local storage and social part (followers, comments, likes).
-
-List of all users to be kept [here](users.txt) (hardcoded for now).
+One-page Web 2.0 project without with Flickr for backend and social part (followers, comments, likes).
 
 Original JavaScript viewer with small changes can be used to show content.
 
