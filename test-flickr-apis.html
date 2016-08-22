@@ -29,7 +29,7 @@
 
 //console.log("This will create a box showing a user's 'feed'.");
 
-$.getJSON("http://api.flickr.com/services/feeds/groups_pool.gne?id=3053039@N23&lang=en-us&format=json&jsoncallback=?", function(data){
+$.getJSON("https://api.flickr.com/services/feeds/groups_pool.gne?id=3053039@N23&lang=en-us&format=json&jsoncallback=?", function(data){
   $.each(data.items, function(i,item){
     $("<img/>").attr("src", item.media.m).appendTo("#images")
       .wrap("<a href='" + item.link + "'></a>");
