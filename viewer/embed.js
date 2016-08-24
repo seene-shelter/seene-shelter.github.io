@@ -10410,12 +10410,12 @@ var requirejs, require, define;
                     }]
                 }
             }).state("scene_embed", {
-                url: "/viewer/?short_code", // "/s/:short_code/embed/",  // DiSjfC /findme1
+                url: "/viewer/?url", // "/s/:short_code/embed/",  // DiSjfC /findme1
                 controller: "SceneCtrl",
                 templateUrl: "app/scenes/embed.html.tpl",
                 resolve: {
                     scene: ["Scenes", "$stateParams", function(e, t) {
-                        return e.get(t.short_code)
+                        return e.get('DiSjfC') // under this constant in index.html they have preconfigured details (all this should be removed)
                     }],
                     user: ["scene", "Users", function(e, t) {
                         return e.user || t.get(e.user_id)
