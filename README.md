@@ -30,15 +30,10 @@ Then: sees a feed of stuff from people she follows, can like/comment (for now by
 
 ## Viewer options
 
-* original viewer, patched to support JPG+XMP
+* original viewer, patched to support JPG+XMP (going for this)
 * https://www.clicktorelease.com/code/depth-player/ (already supportes JPG+XMP)
 * new, based on same three.js
 * http://depthy.me (uses self-created 3d library pixi.js, and tricky webgl filtering -- potentially best for battery)
-
-Currently incline towards clicktorelease viewer, it supports
-* taps
-* mouse 
-* but does NOT support: gyro (must be done to replicate "the feeling". maybe can be borrowed from original viewer OR depthy)
 
 ### Storage options
 
