@@ -43,7 +43,10 @@ Currently incline towards clicktorelease viewer, it supports
 ### Storage options
 
 Flickr is chosen because it is 
-* TODO
+* sufficiently well-known, people might already have an account there
+* 1TB free storage
+* good collaboration inside, followers, favorites
+* albums and groups 
 * fantastic API, with comments and likes
 
 Others
