@@ -10537,7 +10537,7 @@ var requirejs, require, define;
         }]), r.config(["$compileProvider", function(e) {
             return e.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|chrome-extension|seene):/)
         }]), r.config(["$urlRouterProvider", "$locationProvider", "$stateProvider", function(n, r) {
-            r.html5Mode(!0), n.rule(function(n, r) {
+            /*r.html5Mode(!0), */n.rule(function(n, r) {
                 var i = r.path(),
                     s = r.search(),
                     o;
