@@ -10384,8 +10384,11 @@ var requirejs, require, define;
                 controller: "SceneCtrl",
                 templateUrl: "app/scenes/embed.html.tpl",
                 resolve: {
-                    scene: ["Scenes", "$stateParams", function(e, t) {
-                        return e.get('DiSjfC') // under this constant in index.html they have preconfigured details (all this should be removed)
+                    scene: ["$stateParams", function(e, t) {
+                        return {
+							"model_url":"scene.oemodel",
+							"poster_url":"poster.jpg",
+						 }
                     }],
                     translations: ["loadTranslateParts", function(e) {
                         return e("core")
