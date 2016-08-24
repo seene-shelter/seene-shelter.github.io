@@ -1,0 +1,12 @@
+#images { 
+	height: 400px; 
+	width: 1140px; 
+	padding:0; 
+	margin:0; 
+	overflow: hidden;
+	}
+#images img { 
+	border:1px solid black;
+	}
+	
+// height: 170 px, width: 1140px;

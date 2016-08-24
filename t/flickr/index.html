@@ -5,17 +5,25 @@
 </script>
 <script type="text/javascript" src="js/jquery.cycle.all.js">
 </script>
-<!-- Title of the Flickr pool !-->
+
+<!-- Title of the Flickr pool -->
 <h1 id="title"></h1> 
-<!-- Description of the images pool !-->
+
+<!-- Description of the images pool -->
 <p id="description"></p> 
-<!-- Link to the images pool !-->
+
+<!-- Link to the images pool -->
 <p id="link"></p> 
-<div id="images"></div> <!--Container for the images !-->
-<div id="flickrNav"> <!-- Navigation for the images !-->
+
+<!--Container for the images -->
+<div id="images"></div> 
+
+<!-- Navigation for the images -->
+<div id="flickrNav"> 
     <a id="prev" href="#">Prev</a><a id="next" href="#">Next</a>
 </div>
-<link rel="stylesheet" href="test-flickr-apis/styles.css">
+
+<link rel="stylesheet" href="styles-test-flickr-apis.css">
 </head>
 <body>
 
@@ -25,11 +33,9 @@
 
 <script>
 
-//document.getElementById("demo").innerHTML = "Let's see if the pull worked.";
-
 //console.log("This will create a box showing a user's 'feed'.");
 
-$.getJSON("https://api.flickr.com/services/feeds/groups_pool.gne?id=3053039@N23&lang=en-us&format=json&jsoncallback=?", function(data){
+$.getJSON("https://api.flickr.com/services/feeds/groups_pool.gne?id=3075220@N22&lang=en-us&format=json&jsoncallback=?", function(data){
   $.each(data.items, function(i,item){
     $("<img/>").attr("src", item.media.m).appendTo("#images")
       .wrap("<a href='" + item.link + "'></a>");
@@ -42,7 +48,7 @@ $.getJSON("https://api.flickr.com/services/feeds/groups_pool.gne?id=3053039@N23&
 
   $('#images').cycle({
     fx:     'fade',
-    speed:    'fast',
+    speed:    'normal',
     timeout:  0,
     next:   '#next',
     prev:   '#prev'
