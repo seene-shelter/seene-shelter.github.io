@@ -20,34 +20,7 @@
 	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 	ga('create', 'UA-44828339-1', {
 	    'cookieDomain': 'seene.co'
-	});</script></head><body class="overflow-hidden--xy background--transparent" ng-controller="AppCtrl"><div ng-controller="TrackingCtrl"><div class="background--transparent overflow-hidden--y"><div ui-view="" class="view-root">
-	
-<!--could not figure out ui-router in 2.5 hours, hacking in-->
-<div class="embed">
-    <div oe-move="trackInteraction($event)" oe-motion="trackInteraction($event)">
-       <span ng-controller="SceneInteractionCtrl">
-            <span ng-controller="SceneModelCtrl">
-               <div class="scene-background" ng-style="{'background-image':'url({{ scene.poster_url | imgTransform:'w1920-r90-b200x150' | relProtocol }})'}"></div>
-               <div ng-if="$supports.webgl">
-                  <span ng-if="!ready && !$supports.iOS" class="anim-fade-inout">
-                    <div class="loader loader-1 scene-loader"></div>
-                  </span>
-                  <div obvi-model class="scene-oemodel" ng-class="{'ready': !!ready}"></div>
-               </div>
-               <div ng-if="!$supports.webgl">
-                  <div class="center--block col-12 padding--none fill-width overflow-hidden--xy" style="border: 0">
-                    <div class="margin-extend--top--100"></div>
-                    <iframe ng-src="{{getVideoEmbedUrl(scene)}}" class="story-figure-abs" width="{{$supports.iOS ? '87.5%' : '100%'}}" height="{{$supports.iOS ? '87.5%' : '100%'}}" frameborder="0" seamless="" style="{{$supports.iOS ? 'margin: 0 auto;' : ''}}"></iframe>
-                  </div>
-               </div>
-           </span>
-       </span>
-    </div>
-</div>
-	
-	
-	
-	</div></div></div> <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.4/angular.min.js"></script><script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/three.js/r61/three.min.js"></script><script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/json3/3.2.5/json3.min.js"></script><script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/es5-shim/2.1.0/es5-shim.min.js"></script>   <script type="text/javascript" src="embed.js"></script><script>//<![CDATA[
+	});</script></head><body class="overflow-hidden--xy background--transparent" ng-controller="AppCtrl"><div ng-controller="TrackingCtrl"><div class="background--transparent overflow-hidden--y"><div ui-view="" class="view-root"></div></div></div> <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.4/angular.min.js"></script><script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/three.js/r61/three.min.js"></script><script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/json3/3.2.5/json3.min.js"></script><script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/es5-shim/2.1.0/es5-shim.min.js"></script>   <script type="text/javascript" src="embed.js"></script><script>//<![CDATA[
     (function (require) {
         require(['OeApp'], function(OeApp){
            OeApp.bootstrap({
