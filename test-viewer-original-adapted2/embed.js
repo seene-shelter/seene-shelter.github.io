@@ -10410,7 +10410,7 @@ var requirejs, require, define;
                     }]
                 }
             }).state("scene_embed", {
-                url: "/:short_code", // "/s/:short_code/embed/?a",  // DiSjfC
+                url: "/s/:short_code/embed/",  // DiSjfC /findme1
                 controller: "SceneCtrl",
                 templateUrl: "app/scenes/embed.html.tpl",
                 resolve: {
