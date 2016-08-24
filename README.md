@@ -37,21 +37,25 @@ Then: sees a feed of stuff from people she follows, can like/comment (for now by
 
 ### Storage options
 
-Flickr is chosen because it is 
+#### Flickr (going for this)
+ 
 * sufficiently well-known, people might already have an account there
 * 1TB free storage
 * good collaboration inside, followers, favorites
 * albums and groups 
 * fantastic API, with comments and likes
 
-Others
-* Dropbox
-** sufficiently well-known, people might already have an account there
-** free account of 2Gb is enough for about 2K of Seenes, older stuff can be removed or moved to separate account
-** has good API
-** has public links; https://www.dropbox.com/sh/1h3zy9jm4nftelm/AABAdhug5I_8NO8z5-N1lpVOa
-** has comments on public links web and in mobile app (one need Dropbox account to write a comment)
-** has convenient ways of uploading from mobile device (including auto-upload)
+#### Dropbox
+
+* sufficiently well-known, people might already have an account there
+* free account of 2Gb is enough for about 2K of Seenes, older stuff can be removed or moved to separate account
+* has good API
+* has public links; https://www.dropbox.com/sh/1h3zy9jm4nftelm/AABAdhug5I_8NO8z5-N1lpVOa
+* has comments on public links web and in mobile app (one need Dropbox account to write a comment)
+* has convenient ways of uploading from mobile device (including auto-upload)
+
+#### Others
+
 * Twitter (no; strips depth)
 * Tumblr (no; strips depth)
 * Google Photo (no; strips depth)
