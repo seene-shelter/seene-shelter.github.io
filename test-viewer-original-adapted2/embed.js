@@ -10410,7 +10410,7 @@ var requirejs, require, define;
                     }]
                 }
             }).state("scene_embed", {
-                url: "/s/:short_code/embed/",  // DiSjfC /findme1
+                url: "/test-viewer-original-adapted2/?short_code", // "/s/:short_code/embed/",  // DiSjfC /findme1
                 controller: "SceneCtrl",
                 templateUrl: "app/scenes/embed.html.tpl",
                 resolve: {
@@ -10537,7 +10537,7 @@ var requirejs, require, define;
         }]), r.config(["$compileProvider", function(e) {
             return e.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|chrome-extension|seene):/)
         }]), r.config(["$urlRouterProvider", "$locationProvider", "$stateProvider", function(n, r) {
-            /*r.html5Mode(!0), */n.rule(function(n, r) {
+            r.html5Mode(!0), n.rule(function(n, r) {
                 var i = r.path(),
                     s = r.search(),
                     o;
