@@ -10379,24 +10379,7 @@ var requirejs, require, define;
             return ["/s", e.short_code, "video"].join("/")
         }
         return e.module("oe.scenes", ["ui.router", "oe.resources", "oe.resources.restangular", "oe.services.supports", "oe.filters.uri", "oe.services.constants", "oe.services.translate"]).config(["$stateProvider", "$urlRouterProvider", function(e,urlRouterProvider) {
-            e.state("root.scene", {
-                url: "/s/:short_code/",
-                templateUrl: "app/scenes/show.html.tpl",
-                controller: "SceneCtrl",
-                resolve: {
-                    scene: ["Scenes", "$stateParams", function(e, t) {
-                        return e.get(t.short_code)
-                    }],
-                    user: ["scene", "Users", function(e, t) {
-                        return e.user || t.get(e.user_id)
-                    }],
-                    pageTitle: ["scene", "user", "$rootScope", function(e, t, n) {
-                        var r = t.username || t.name,
-                            i = e.caption;
-                        return n.pageTitle = i ? "3D photo by " + r + " - " + i : "3D photo by " + r, n.pageTitle
-                    }]
-                }
-            }).state("scene_embed", {
+            e.state("scene_embed", {
                 url: "/viewer/?url", // "/s/:short_code/embed/",  // DiSjfC /findme1
                 controller: "SceneCtrl",
                 templateUrl: "app/scenes/embed.html.tpl",
@@ -10404,20 +10387,12 @@ var requirejs, require, define;
                     scene: ["Scenes", "$stateParams", function(e, t) {
                         return e.get('DiSjfC') // under this constant in index.html they have preconfigured details (all this should be removed)
                     }],
-                    user: ["scene", "Users", function(e, t) {
-                        return e.user || t.get(e.user_id)
-                    }],
-                    pageTitle: ["scene", "user", "$rootScope", function(e, t, n) {
-                        var r = t.username || t.name,
-                            i = e.caption;
-                        return n.pageTitle = i ? "3D photo by " + r + " - " + i : "3D photo by " + r, n.pageTitle
-                    }],
                     translations: ["loadTranslateParts", function(e) {
                         return e("core")
                     }]
                 }
             })
-			//urlRouterProvider.otherwise('/paf/')
+			urlRouterProvider.otherwise('/application_is_expected_to_be_in_root_folder_of_website_move_it_please_or_reconfigure_state_above')
         }]).controller("ScenesGridCtrl", ["$scope", "$modal", "$supports", function(e, t, r) {
             var i;
             e.displaySingleView = function(n, s) {
@@ -10453,8 +10428,8 @@ var requirejs, require, define;
                     render: !1
                 })
             })
-        }]).controller("SceneCtrl", ["$scope", "scene", "user", function(e, t, r) {
-            e.user = r || e.scene.user, e.scene = t || e.scene, e.getVideoEmbedUrl = n
+        }]).controller("SceneCtrl", ["$scope", "scene", function(e, t) {
+            e.user = 'unknown_user_findme2', e.scene = t || e.scene, e.getVideoEmbedUrl = n
         }]).controller("SceneInteractionCtrl", ["$scope", "$timeout", function(e, t) {
             function s() {
                 i = t(function() {
