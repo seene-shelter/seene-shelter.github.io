@@ -11,7 +11,7 @@ Original JavaScript viewer with small changes can be used to show content.
 | What                           | Status  | Notes                                        |
 | -------------------------------|---------|----------------------------------------------|
 | Design the web app             | TODO    |
-| Viewer to work separately      | DONE    | http://seene-shelter.github.io/viewer/
+| Viewer to work separately      | DONE    | http://seene-shelter.github.io/viewer/?url=%2Fw1024%2Fviewer%2Fposter.jpg
 | Viewer to accept export format | TODO    |
 | Implement the web app          | TODO    |
 | Get good domain name           | DONE    | github.io can host stuff for now, no need to pay or register |

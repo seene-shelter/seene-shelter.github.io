@@ -10384,10 +10384,10 @@ var requirejs, require, define;
                 controller: "SceneCtrl",
                 templateUrl: "app/scenes/embed.html.tpl",
                 resolve: {
-                    scene: ["$stateParams", function(e, t) {
+                    scene: ["$stateParams", function(stateParams) {
                         return {
 							"model_url":"scene.oemodel",
-							"poster_url":"poster.jpg",
+							"poster_url":stateParams.url,
 						 }
                     }],
                     translations: ["loadTranslateParts", function(e) {
@@ -10453,11 +10453,7 @@ var requirejs, require, define;
                 t.cancel(i)
             }), s()
         }]).controller("SceneModelCtrl", ["$scope", "$supports", "$config", "$filter", "OeModel", function(e, t, n, r, i) {
-            var s = r("relProtocol"),
-                o = r("imgTransform"),
-                u = r("addOriginQuery"),
-                a, f;
-            e.scene && t.webgl && (a = s(o(e.scene.poster_url, "w1024")), f = s(e.scene.model_url), i.get(f, a).then(function(t) {
+            e.scene && t.webgl && (i.get(e.scene.model_url, e.scene.poster_url).then(function(t) {
                 e.model = t
             }))
         }]).controller("SceneShareCtrl", ["$scope", "$location", "$sce", function(e, t, n) {
