@@ -11,13 +11,13 @@ Original JavaScript viewer with small changes can be used to show content.
 | What                           | Status  | Notes                                        |
 | -------------------------------|---------|----------------------------------------------|
 | Design the web app             | TODO    |
-| Viewer to work separately      | TODO    |
+| Viewer to work separately      | DONE    | http://seene-shelter.github.io/viewer/?short_code=DiSjfC
 | Viewer to accept export format | TODO    |
 | Implement the web app          | TODO    |
 | Get good domain name           | DONE    | github.io can host stuff for now, no need to pay or register |
 | Host the web app               | DONE    | http://seene-shelter.github.io/              |
-| Dropbox API                    | DONE    | [see results](dropbox.md)                        |
-| Flickr API                     | TODO    | they have comments and likes!                |
+| Dropbox API                    | DONE    | [investigations](t/dropbox/readme.md) [test](http://seene-shelter.github.io/dropbox/)                       |
+| Flickr API                     | 20%    | [test](http://seene-shelter.github.io/t/flickr/)!                |
 
 ## Design outline
 
@@ -25,7 +25,8 @@ Useful hint: "seene://capture" opens Seene app in capture mode (if it was open b
 
 User opens http://seene-shelter.github.io/
 
-and sees a feed of stuff from people she follows, can like/comment (for now by going to Flickr site/mobile app).
+First time: presented with a dialogue, requesting permission to see his feed.
+Then: sees a feed of stuff from people she follows, can like/comment (for now by going to Flickr site/mobile app).
 
 ## Viewer options
 

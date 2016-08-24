@@ -1,4 +1,0 @@
-client_id=ksvh099n3t79zqq
-client_secret=rfkrrfaz0yfwh43
-#bearer=N2XgLc_hpHAAAAAAAAAACSkGjhQkhH5ubQPaWgX7bBntP1mNUxZ
-bearer=N2XgLc_hpHAAAAAAAAAAD8iARUxDqwcITuOS7PmYGfCuGfNQ_pkhEy4I6ZdQe2Oh
