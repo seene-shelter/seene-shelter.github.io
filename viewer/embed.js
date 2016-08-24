@@ -7210,19 +7210,6 @@ var requirejs, require, define;
                     }, !0)
                 }
             }
-        }]), r.directive("oePageTitle", ["breadcrumbs", "$config", "$rootScope", function(e, t, n) {
-            return {
-                link: function(r, i, s, o) {
-                    n.$on("$stateChangeStart", function(e) {
-                        n.pageTitle = null
-                    }), e.$on("$breadcrumbsChange", function(e, r) {
-                        var s = r[0],
-                            o = s.name,
-                            u = n.pageTitle;
-                        i.text(t.APP_NAME + ": " + (u ? u : o ? o.length <= 3 ? o.toUpperCase() : o.charAt(0).toUpperCase() + o.slice(1) : "Everyone can capture reality in 3D"))
-                    })
-                }
-            }
         }]), r.directive("oeExternal", ["$window", function(e) {
             return {
                 link: function(t, n, r) {
