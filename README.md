@@ -16,8 +16,8 @@ Original JavaScript viewer with small changes can be used to show content.
 | Implement the web app          | TODO    |
 | Get good domain name           | DONE    | github.io can host stuff for now, no need to pay or register |
 | Host the web app               | DONE    | http://seene-shelter.github.io/              |
-| Dropbox API                    | DONE    | [investigations](t/dropbox/readme.md) [test](http://seene-shelter.github.io/dropbox/)                       |
-| Flickr API                     | 20%    | [test](http://seene-shelter.github.io/t/flickr/)!                |
+| Dropbox API                    | DONE    | [investigations](t/dropbox/readme.md), [test](http://seene-shelter.github.io/t/dropbox/)                       |
+| Flickr API                     | 20%    | [test](http://seene-shelter.github.io/t/flickr/)                |
 
 ## Design outline
 
