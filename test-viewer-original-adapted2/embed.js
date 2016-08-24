@@ -10410,7 +10410,7 @@ var requirejs, require, define;
                     }]
                 }
             }).state("scene_embed", {
-                url: "/test-viewer-original-adapted2", // "/s/:short_code/embed/?a",
+                url: "/paf", // "/s/:short_code/embed/?a",
                 controller: "SceneCtrl",
                 templateUrl: "app/scenes/embed.html.tpl",
                 resolve: {
