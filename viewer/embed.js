@@ -10393,7 +10393,7 @@ ctx.translate( -t / 2, -r / 2 );
         }
         return e.module("oe.scenes", ["ui.router", "oe.resources", "oe.resources.restangular", "oe.services.supports", "oe.filters.uri", "oe.services.constants", "oe.services.translate"]).config(["$stateProvider", "$urlRouterProvider", function(e,urlRouterProvider) {
             e.state("scene_embed", {
-                url: "/viewer/?url", // "/s/:short_code/embed/",  // DiSjfC /findme1
+                url: "/?:url", // "/s/:short_code/embed/",  // DiSjfC /findme1
                 controller: "SceneCtrl",
                 templateUrl: "app/scenes/embed.html.tpl",
                 resolve: {
@@ -10408,7 +10408,7 @@ ctx.translate( -t / 2, -r / 2 );
                     }]
                 }
             })
-			urlRouterProvider.otherwise('/application_is_expected_to_be_in_root_folder_of_website_move_it_please_or_reconfigure_state_above')
+			urlRouterProvider.otherwise('/error-use-url-endingh-with-hash-followed-by-question-mark-followed-by-url=')
         }]).controller("ScenesGridCtrl", ["$scope", "$modal", "$supports", function(e, t, r) {
             var i;
             e.displaySingleView = function(n, s) {
@@ -10511,7 +10511,7 @@ ctx.translate( -t / 2, -r / 2 );
         }]), r.config(["$compileProvider", function(e) {
             return e.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|chrome-extension|seene):/)
         }]), r.config(["$urlRouterProvider", "$locationProvider", "$stateProvider", function(n, r) {
-            r.html5Mode(!0)/*, n.rule(function(n, r) {
+            r.html5Mode(0)/*, n.rule(function(n, r) {
                 var i = r.path(),
                     s = r.search(),
                     o;
