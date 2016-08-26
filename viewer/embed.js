@@ -10023,8 +10023,15 @@ var requirejs, require, define;
                 return n.onload = function() {
                     if (!p(this.width) || !p(this.height)) {
                         var t = d(this.width),
-                            r = d(this.height);
-                        e.image.width = t, e.image.height = r, e.image.getContext("2d").drawImage(this, 0, 0, t, r)
+                            r = d(this.height),
+							ctx;
+                        e.image.width = t,
+						e.image.height = r,
+						ctx = e.image.getContext("2d"),
+ctx.translate( t / 2, r / 2 );
+ctx.rotate( -Math.PI / 2 );
+ctx.translate( -t / 2, -r / 2 );
+						ctx.drawImage(this, 0, 0, t, r)
                     } else e.image = this;
                     e.needsUpdate = !0, i.resolve(n)
                 }, r.crossOrigin !== undefined && (n.crossOrigin = r.crossOrigin), n.src = t, i.promise
@@ -10035,7 +10042,13 @@ var requirejs, require, define;
                     c = n + "/" + s,
                     h = r.$q.defer(),
                     p, d;
-                return l ? (p = t.ImageUtils.loadCompressedTexture(c), e[i] = p) : (p = document.createElement("canvas"), e[i] = new t.Texture(p)), e[i].sourceFile = s, o && (e[i].repeat.set(o[0], o[1]), o[0] !== 1 && (e[i].wrapS = t.RepeatWrapping), o[1] !== 1 && (e[i].wrapT = t.RepeatWrapping)), u && e[i].offset.set(u[0], u[1]), a && (d = {
+                return l ? (p = t.ImageUtils.loadCompressedTexture(c), e[i] = p) :
+				(
+					p = document.createElement("canvas"),
+					e[i] = new t.Texture(p)
+				),
+				e[i].sourceFile = s,
+				o && (e[i].repeat.set(o[0], o[1]), o[0] !== 1 && (e[i].wrapS = t.RepeatWrapping), o[1] !== 1 && (e[i].wrapT = t.RepeatWrapping)), u && e[i].offset.set(u[0], u[1]), a && (d = {
                     repeat: t.RepeatWrapping,
                     mirror: t.MirroredRepeatWrapping
                 }, d[a[0]] !== undefined && (e[i].wrapS = d[a[0]]), d[a[1]] !== undefined && (e[i].wrapT = d[a[1]])), f && (e[i].anisotropy = f), l ? h.resolve(e[i]) : v(e[i], c).then(function(t) {
