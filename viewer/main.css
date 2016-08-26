@@ -12835,7 +12835,7 @@ th.hidden-lg, td.hidden-lg {
 }
 
 .background--transparent, .count-block--transparent {
-    background-color: transparent
+    background-color: black
 }
 
 .background--fb {
