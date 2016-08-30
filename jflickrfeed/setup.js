@@ -41,9 +41,10 @@ $(document).ready(function(){
 	});
 	
 	$('#nocallback').jflickrfeed({
-		limit: 4,
+		limit: 20,
 		qstrings: {
-			id: '146378156@N07'
+			user_id: '146416227@N06',
+			display_all: '1'
 		},
 		useTemplate: false,
 		itemCallback: function(item){
