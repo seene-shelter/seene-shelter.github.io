@@ -10086,244 +10086,153 @@ ctx.translate( -t / 2, -r / 2 );
             }, c = new t.ShaderMaterial(l), s.transparent && (c.transparent = !0)) : c = new t[o](s), e.DbgName !== undefined && (c.name = e.DbgName), h.finally(function(e) {
                 i.resolve(c)
             }), i.promise
-        }, r.prototype.parseBinary = function(e, n) {
-            function h() {
-                function I(e, t) {
-                    var n = {
-                        version: z(e, t),
-                        camera_width: z(e, t + 4),
-                        camera_height: z(e, t + 8),
-                        camera_fx: W(e, t + 12),
-                        camera_fy: W(e, t + 16),
-                        camera_k1: W(e, t + 20),
-                        camera_k2: W(e, t + 24),
-                        depthmap_width: z(e, t + 28),
-                        depthmap_height: z(e, t + 32),
-                        header_bytes: 36
-                    };
-                    return n.version === 2 ? (n.depthmap_min_depth = .6, n.depthmap_max_depth = 10) : (n.depthmap_min_depth = W(e, t + 36), n.depthmap_max_depth = W(e, t + 40), n.header_bytes = 44), n
-                }
+        }, r.prototype.parseBinary = function(e, n, poster_image) {
+			var _this = this
+			var d = new DepthReader()
+			d.parseFile( e, null, function(error){
+				throw new Error("OEModelLoader: " + error)
+			});
 
-                function q(e, t, n) {
-                    var r = new Uint8Array(e, t, n),
-                        i = "",
-                        s;
-                    for (s = 0; s < n; s += 1) i += String.fromCharCode(r[t + s]);
-                    return i
-                }
+var settings = {
+	smoothRadius: 10,
+	quadSize: 4, // step over depthmap. maybe 1. but for now for speed
+	pointSize: 3,
+};
 
-                function R(e, t) {
-                    var n = new Uint8Array(e, t, 1);
-                    return n[0]
-                }
+var img = new Image();
+var deferred = this.$q.defer()
+img.onload = function() {
+		var s = 6;
+		var w = Math.round( poster_image.width / s ),
+			h = Math.round( poster_image.height / s );
 
-                function U(e, t) {
-                    var n = new Uint32Array(e, t, 1);
-                    return n[0]
-                }
+		var canvas = document.createElement( 'canvas' ),
+			ctx = canvas.getContext( '2d' );
 
-                function z(e, t) {
-                    var n = new Int32Array(e, t, 1);
-                    return n[0]
-                }
+		canvas.width = img.width;
+		canvas.height = img.height;
+		ctx.drawImage( img, 0, 0 );
 
-                function W(e, t) {
-                    var n = new Float32Array(e, t, 1);
-                    return n[0]
-                }
+		stackBlurCanvasRGB( canvas, 0, 0, canvas.width, canvas.height, parseInt( settings.smoothRadius, 10 ) );
 
-                function X(t) {
-                    var r = s.nvertices,
-                        i = new Float32Array(e, t, r * 3),
-                        o, u, a, f;
-                    for (o = 0; o < r; o += 1) u = i[o * 3], a = i[o * 3 + 1], f = i[o * 3 + 2], p(n, u, a, f);
-                    return r * 3 * Float32Array.BYTES_PER_ELEMENT
-                }
+		var imageData = ctx.getImageData( 0, 0, canvas.width, canvas.height );
+		var p = 0;
 
-                function V(t) {
-                    var n = s.nnormals,
-                        r, o, u, a, f;
-                    if (n) {
-                        r = new Int8Array(e, t, n * 3);
-                        for (o = 0; o < n; o += 1) u = r[o * 3], a = r[o * 3 + 1], f = r[o * 3 + 2], i.push(u / 127, a / 127, f / 127)
-                    }
-                    return n * 3 * Int8Array.BYTES_PER_ELEMENT
-                }
+		var colorCanvas = document.createElement( 'canvas' ),
+			colorCtx = colorCanvas.getContext( '2d' );
 
-                function $(t) {
-                    var n = s.nuvs,
-                        r, i, u, a;
-                    if (n) {
-                        r = new Float32Array(e, t, n * 2);
-                        for (i = 0; i < n; i += 1) u = r[i * 2], a = r[i * 2 + 1], o.push(u, a)
-                    }
-                    return n * 2 * Float32Array.BYTES_PER_ELEMENT
-                }
+		colorCanvas.width = poster_image.width;
+		colorCanvas.height = poster_image.height;
+		colorCtx.drawImage( poster_image, 0, 0 );
+		var colorImageData = colorCtx.getImageData( 0, 0, colorCanvas.width, colorCanvas.height );
+		var colorP = 0;
 
-                function J(t, r) {
-                    var i, s, u, a, f, l, c, h, p, d, v = new Uint32Array(e, r, 3 * t);
-                    for (i = 0; i < t; i += 1) s = v[i * 3], u = v[i * 3 + 1], a = v[i * 3 + 2], f = o[s * 2], h = o[s * 2 + 1], l = o[u * 2], p = o[u * 2 + 1], c = o[a * 2], d = o[a * 2 + 1], y(n.faceVertexUvs[0], f, h, l, p, c, d)
-                }
+		var far = parseFloat( d.depth.far ),
+			near = parseFloat( d.depth.near );
 
-                function K(t, r) {
-                    var i, s, u, a, f, l, c, h, p, d, v, m, g, y = new Uint32Array(e, r, 4 * t);
-                    for (i = 0; i < t; i += 1) s = y[i * 4], u = y[i * 4 + 1], a = y[i * 4 + 2], f = y[i * 4 + 3], l = o[s * 2], d = o[s * 2 + 1], c = o[u * 2], v = o[u * 2 + 1], h = o[a * 2], m = o[a * 2 + 1], p = o[f * 2], g = o[f * 2 + 1], b(n.faceVertexUvs[0], l, d, c, v, h, m, p, g)
-                }
+		console.log( d.depth.format, d.focus.focalDistance, near, far, img.width, img.height );
 
-                function Q(t, r, i) {
-                    var s, o, u, a, f, l = new Uint32Array(e, r, 3 * t),
-                        c = new Uint16Array(e, i, t);
-                    for (s = 0; s < t; s += 1) o = l[s * 3], u = l[s * 3 + 1], a = l[s * 3 + 2], f = c[s], d(n, o, u, a, f)
-                }
+		var geometry = new THREE.BufferGeometry();
+		var size = w * h;
 
-                function G(t, r, i) {
-                    var s, o, u, a, f, l, c = new Uint32Array(e, r, 4 * t),
-                        h = new Uint16Array(e, i, t);
-                    for (s = 0; s < t; s += 1) o = c[s * 4], u = c[s * 4 + 1], a = c[s * 4 + 2], f = c[s * 4 + 3], l = h[s], v(n, o, u, a, f, l)
-                }
+		geometry.addAttribute( 'position', Float32Array, size, 3 );
+		geometry.addAttribute( 'customColor', Float32Array, size, 3 );
 
-                function Y(t, r, s, o) {
-                    var u, a, f, l, c, h, p, d, v = new Uint32Array(e, r, 3 * t),
-                        g = new Uint32Array(e, s, 3 * t),
-                        y = new Uint16Array(e, o, t);
-                    for (u = 0; u < t; u += 1) a = v[u * 3], f = v[u * 3 + 1], l = v[u * 3 + 2], h = g[u * 3], p = g[u * 3 + 1], d = g[u * 3 + 2], c = y[u], m(n, i, a, f, l, c, h, p, d)
-                }
+		var positions = geometry.attributes.position.array;
+		var customColors = geometry.attributes.customColor.array;
 
-                function Z(t, r, s, o) {
-                    var u, a, f, l, c, h, p, d, v, m, y = new Uint32Array(e, r, 4 * t),
-                        b = new Uint32Array(e, s, 4 * t),
-                        w = new Uint16Array(e, o, t);
-                    for (u = 0; u < t; u += 1) a = y[u * 4], f = y[u * 4 + 1], l = y[u * 4 + 2], c = y[u * 4 + 3], p = b[u * 4], d = b[u * 4 + 1], v = b[u * 4 + 2], m = b[u * 4 + 3], h = w[u], g(n, i, a, f, l, c, h, p, d, v, m)
-                }
+		var adjustment = 10 * 960 / img.width
+		var ar = img.height / img.width;
+		var scale = new THREE.Vector3( 1, 1, 1 );
+		var v = new THREE.Vector3();
+		var ptr = 0;
 
-                function et(e) {
-                    var t = s.ntri_flat,
-                        n;
-                    t && (n = e + t * Uint32Array.BYTES_PER_ELEMENT * 3, Q(t, e, n))
-                }
+		var minZ = 100000000000, maxZ = -100000000000;
+		for( var y = 0; y < h; y++ ) {
+			for( var x = 0; x < w; x++ ) {
+				v.x = ( x - .5 * w ) / w;
+				v.y = ( y - .5 * h ) / h;
+				p = Math.round( ( ( -v.y + .5 ) ) * ( img.height - 1 ) ) * img.width * 4 + Math.round( ( ( v.x + .5 ) ) * ( img.width - 1 ) ) * 4;
+				var dn = imageData.data[ p ] / 255;
+				var rd = ( far * near ) / ( far - dn * ( far - near ) ); // RangeInverse
+				//var rd = ( 1 - dn ) * ( far - near ) + near; // RangeLinear
+				v.z = -rd ;
+				v.x *= rd * 1;
+				v.y *= rd * ar;
+				v.multiply( scale );
 
-                function tt(e) {
-                    var t = s.ntri_flat_uv,
-                        n, r;
-                    t && (n = e + t * Uint32Array.BYTES_PER_ELEMENT * 3, r = n + t * Uint32Array.BYTES_PER_ELEMENT * 3, Q(t, e, r), J(t, n))
-                }
+				positions[ ptr + 0 ] = v.x;
+				positions[ ptr + 1 ] = v.y;
+				positions[ ptr + 2 ] = v.z;
 
-                function nt(e) {
-                    var t = s.ntri_smooth,
-                        n, r;
-                    t && (n = e + t * Uint32Array.BYTES_PER_ELEMENT * 3, r = n + t * Uint32Array.BYTES_PER_ELEMENT * 3, Y(t, e, n, r))
-                }
+				customColors[ ptr + 0 ] = colorImageData.data[ p + 0 ] / 255;
+				customColors[ ptr + 1 ] = colorImageData.data[ p + 1 ] / 255;
+				customColors[ ptr + 2 ] = colorImageData.data[ p + 2 ] / 255;
 
-                function rt(e) {
-                    var t = s.ntri_smooth_uv,
-                        n, r, i;
-                    t && (n = e + t * Uint32Array.BYTES_PER_ELEMENT * 3, r = n + t * Uint32Array.BYTES_PER_ELEMENT * 3, i = r + t * Uint32Array.BYTES_PER_ELEMENT * 3, Y(t, e, n, i), J(t, r))
-                }
+				ptr += 3;
 
-                function it(e) {
-                    var t = s.nquad_flat,
-                        n;
-                    t && (n = e + t * Uint32Array.BYTES_PER_ELEMENT * 4, G(t, e, n))
-                }
+				if( v.z < minZ ) minZ = v.z;
+				if( v.z > maxZ ) maxZ = v.z;
 
-                function st(e) {
-                    var t = s.nquad_flat_uv,
-                        n, r;
-                    t && (n = e + t * Uint32Array.BYTES_PER_ELEMENT * 4, r = n + t * Uint32Array.BYTES_PER_ELEMENT * 4, G(t, e, r), K(t, n))
-                }
+			}
+		}
 
-                function ot(e) {
-                    var t = s.nquad_smooth,
-                        n, r;
-                    t && (n = e + t * Uint32Array.BYTES_PER_ELEMENT * 4, r = n + t * Uint32Array.BYTES_PER_ELEMENT * 4, Z(t, e, n, r))
-                }
+		var offset = ( maxZ - minZ ) / 2;
+		for( var j = 0; j < positions.length; j+=3 ) {
+			positions[ j + 2 ] += offset;
+		}
 
-                function ut(e) {
-                    var t = s.nquad_smooth_uv,
-                        n, r, i;
-                    t && (n = e + t * Uint32Array.BYTES_PER_ELEMENT * 4, r = n + t * Uint32Array.BYTES_PER_ELEMENT * 4, i = r + t * Uint32Array.BYTES_PER_ELEMENT * 4, Z(t, e, n, i), K(t, r))
-                }
-                var n = this,
-                    r = 0,
-                    i = [],
-                    o = [],
-                    u, a, f, l, c, h, w, E, S, x, T, N, C, k, L, A, O, M, _, D, P, H, B, j, F;
-                t.Geometry.call(this), s = I(e, r);
-                if (s.version !== 2 && s.version !== 3) throw new Error("OEModelLoader: Unsupported model version [" + s.version + "]");
-                r += s.header_bytes, _ = new Float32Array(e, r, s.depthmap_width * s.depthmap_height), D = s.camera_fx / s.camera_width, P = s.camera_fy / s.camera_height;
-                for (H = 0; H < s.depthmap_height; H += 1)
-                    for (B = 0; B < s.depthmap_width; B += 1) j = _[H * s.depthmap_width + B], this.vertices.push(new t.Vector3(j * ((B + .5) / s.depthmap_width - .5) / D, -j * ((H + .5) / s.depthmap_height - .5) / P, -(j - 1))), o.push((B + .5) / s.depthmap_width), o.push(1 - (H + .5) / s.depthmap_height), H > 0 && B > 0 && (F = [(H - 1) * s.depthmap_width + B - 1, (H - 1) * s.depthmap_width + B, H * s.depthmap_width + B - 1, H * s.depthmap_width + B], d(n, F[0], F[2], F[1], 0), d(n, F[1], F[2], F[3], 0), y(n.faceVertexUvs[0], o[F[0] * 2], o[F[0] * 2 + 1], o[F[2] * 2], o[F[2] * 2 + 1], o[F[1] * 2], o[F[1] * 2 + 1]), y(n.faceVertexUvs[0], o[F[1] * 2], o[F[1] * 2 + 1], o[F[2] * 2], o[F[2] * 2 + 1], o[F[3] * 2], o[F[3] * 2 + 1]));
-                this.computeCentroids(), this.computeFaceNormals()
-            }
+		var step = settings.quadSize;
+		var planeGeometry = new THREE.PlaneGeometry( 1, 1, Math.round( w / step ), Math.round( h / step ) );
+		ptr = 0;
+		for( var j = 0; j < planeGeometry.vertices.length; j++ ) {
+			v = planeGeometry.vertices[ j ];
+			p = Math.round( ( ( -v.y + .5 ) ) * ( img.height - 1 ) ) * img.width * 4 + Math.round( ( ( v.x + .5 ) ) * ( img.width - 1 ) ) * 4;
+			var dn = imageData.data[ p ] / 255;
+			//console.log( v, p, dn );
+			var rd = ( far * near ) / ( far - dn * ( far - near ) ); // RangeInverse
+			//var rd = ( 1 - dn ) * ( far - near ) + near; // RangeLinear
+			v.z = -rd ;
+			v.x *= rd * 1;
+			v.y *= rd * ar;
+			v.multiply( scale );
+			v.z += offset;
+		}
 
-            function p(e, n, r, i) {
-                e.vertices.push(new t.Vector3(n, r, i))
-            }
+		planeGeometry.computeFaceNormals();
+		planeGeometry.computeVertexNormals();
 
-            function d(e, n, r, i, s) {
-                e.faces.push(new t.Face3(n, r, i, null, null, s))
-            }
+		var nDistance = parseFloat( d.focus.focalDistance ) + offset * adjustment;
+		var nFov = 1 * Math.atan2( .5 * adjustment * near, d.focus.focalDistance ) * 180 / Math.PI;
+//		material.uniforms.size.value = settings.pointSize * nDistance;
 
-            function v(e, n, r, i, s, o) {
-                e.faces.push(new t.Face4(n, r, i, s, null, null, o))
-            }
-
-            function m(e, n, r, i, s, o, u, a, f) {
-                var l = n[u * 3],
-                    c = n[u * 3 + 1],
-                    h = n[u * 3 + 2],
-                    p = n[a * 3],
-                    d = n[a * 3 + 1],
-                    v = n[a * 3 + 2],
-                    m = n[f * 3],
-                    g = n[f * 3 + 1],
-                    y = n[f * 3 + 2];
-                e.faces.push(new t.Face3(r, i, s, [new t.Vector3(l, c, h), new t.Vector3(p, d, v), new t.Vector3(m, g, y)], null, o))
-            }
-
-            function g(e, n, r, i, s, o, u, a, f, l, c) {
-                var h = n[a * 3],
-                    p = n[a * 3 + 1],
-                    d = n[a * 3 + 2],
-                    v = n[f * 3],
-                    m = n[f * 3 + 1],
-                    g = n[f * 3 + 2],
-                    y = n[l * 3],
-                    b = n[l * 3 + 1],
-                    w = n[l * 3 + 2],
-                    E = n[c * 3],
-                    S = n[c * 3 + 1],
-                    x = n[c * 3 + 2];
-                e.faces.push(new t.Face4(r, i, s, o, [new t.Vector3(h, p, d), new t.Vector3(v, m, g), new t.Vector3(y, b, w), new t.Vector3(E, S, x)], null, u))
-            }
-
-            function y(e, n, r, i, s, o, u) {
-                e.push([new t.Vector2(n, r), new t.Vector2(i, s), new t.Vector2(o, u)])
-            }
-
-            function b(e, n, r, i, s, o, u, a, f) {
-                e.push([new t.Vector2(n, r), new t.Vector2(i, s), new t.Vector2(o, u), new t.Vector2(a, f)])
-            }
-            var r = this,
-                i = this.$q.defer(),
-                s, o, u, a, f, l, c;
-            return h.prototype = Object.create(t.Geometry.prototype), o = this.extractUrlBase(n).substr(0, n.lastIndexOf("/")), u = n.split(o + "/")[1], a = new h, f = [{
+		var o = _this.extractUrlBase(n).substr(0, n.lastIndexOf("/"));
+		var u = n.split(o + "/")[1]
+		var f = [{
                 colorDiffuse: [0, 0, 0],
                 colorSpecular: [0, 0, 0],
                 colorAmbient: [1, 1, 1],
                 opacity: 1,
                 mapDiffuse: u,
                 wireframe: 0
-            }], c = 360 * Math.atan2(.495 * s.camera_width, s.camera_fx) / Math.PI, this.initMaterials(f, o).then(function(e) {
-                r.needsTangents(e) && a.computeTangents(), i.resolve({
-                    geometry: a,
-                    materials: e,
-                    cameraOptions: {
-                        fov: c,
-                        up: new t.Vector3(-1, 0, 0)
-                    }
-                })
-            }), i.promise
+            }]
+		_this.initMaterials(f, o).then(function(loaded_materials) {
+			deferred.resolve({
+				geometry: planeGeometry,
+				materials: loaded_materials,
+				cameraOptions: {
+					fov: nFov,
+					up: new t.Vector3(-1, 0, 0),
+					// new. TODO: use them
+					near: .001,
+					far: ( far + ( maxZ - minZ ) ) * adjustment
+				}
+			})
+		})
+}
+img.src = 'data:' + d.depth.mime + ';base64,' + d.depth.data;
+
+return deferred.promise
         }, e.module("oe.resources.oemodels", []).provider("OeModelLoader", function() {
             this.$get = ["$q", function(e) {
                 return new r(e)
@@ -10343,12 +10252,12 @@ ctx.translate( -t / 2, -r / 2 );
                     var o = t.defer(),
                         u = i,
                         a;
-                    return s(r).then(function(t) {
+                    return s(r).then(function(poster_image) {
                         e.get(n, {
                             responseType: "arraybuffer",
                             cache: !0
                         }).success(function(e, t, n) {
-                            u.parseBinary(e, r).then(function(e) {
+                            u.parseBinary(e, r, poster_image).then(function(e) {
                                 o.resolve(e)
                             })
                         }).error(function(e, t) {
@@ -10399,7 +10308,7 @@ ctx.translate( -t / 2, -r / 2 );
                 resolve: {
                     scene: ["$stateParams", function(stateParams) {
                         return {
-							"model_url":"scene.oemodel",
+							"model_url":stateParams.url,
 							"poster_url":stateParams.url,
 						 }
                     }],
