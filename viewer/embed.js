@@ -6961,6 +6961,7 @@ var requirejs, require, define;
                         var n = e.fov || 32,
                             r = e.up = new t.Vector3(0, 1, 0),
                             i = new t.PerspectiveCamera(n, F / I, .01, 1e3);
+//                            i = new t.PerspectiveCamera(n, F / I, e.near, e.far);
                         return i.position.set(0, 0, 1), i.up = r, i
                     }
 
@@ -7107,7 +7108,20 @@ var requirejs, require, define;
                         e && e.cameraOptions && (U = Y(e.cameraOptions)), e && e.geometry && e.materials && (W = new t.Mesh(e.geometry, e.materials[0]), e.materials[0].overdraw = !0, R.add(W), K())
                     }), T.push(i(u($, 25, !0))), T.push(s(function() {
                         l.pointer.down = !1
-                    })), Q(), G(), R = new t.Scene, z = new t.AmbientLight(16777215), R.add(z), q = n.get(), q.setSize(F, I), c.append(q.domElement), l.$watch("interaction.sleeping", ct), l.$on("scene:op", dt), l.$on("$destroy", mt), c.bind("mousemove touchmove touchstart", ct), a.addEventListener("devicemotion", ft, !1), a.addEventListener("orientationchange", lt, !1), J()
+                    })), Q(),
+					G(),
+					R = new t.Scene,
+					z = new t.AmbientLight(16777215),
+					R.add(z),
+					q = n.get(),
+					q.setSize(F, I),
+					c.append(q.domElement),
+					l.$watch("interaction.sleeping", ct),
+					l.$on("scene:op", dt),
+					l.$on("$destroy", mt),
+					c.bind("mousemove touchmove touchstart", ct),
+					a.addEventListener("devicemotion", ft, !1),
+					a.addEventListener("orientationchange", lt, !1), J()
                 }
             }
         }])
@@ -10202,9 +10216,14 @@ img.onload = function() {
 		planeGeometry.computeFaceNormals();
 		planeGeometry.computeVertexNormals();
 
-		var nDistance = parseFloat( d.focus.focalDistance ) + offset * adjustment;
-		var nFov = 1 * Math.atan2( .5 * adjustment * near, d.focus.focalDistance ) * 180 / Math.PI;
-//		material.uniforms.size.value = settings.pointSize * nDistance;
+		// original seene web viewer
+		// 360 * Math.atan2(.495 * s.camera_width, s.camera_fx) / Math.PI
+		// Jaume's clicktorelease viewer
+		//var nFov = 1 * Math.atan2( .5 * adjustment * near, d.focus.focalDistance ) * 180 / Math.PI;
+		//var nDistance = parseFloat( d.focus.focalDistance ) + offset * adjustment;
+		//material.uniforms.size.value = settings.pointSize * nDistance;
+//		var nFov = 0.35 * Math.atan2( .495 * w, near ) * 180 / Math.PI;
+		var nFov = 0.34 * Math.atan2( .495 * w, far ) * 180 / Math.PI; //digging here
 
 		var o = _this.extractUrlBase(n).substr(0, n.lastIndexOf("/"));
 		var u = n.split(o + "/")[1]
