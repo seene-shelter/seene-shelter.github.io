@@ -6959,7 +6959,7 @@ var requirejs, require, define;
                     function Y(e) {
                         e = e || {};
                         var n = e.fov || 32,
-                            r = e.up = new t.Vector3(0, 1, 0),
+                            r = e.up = new t.Vector3(-1, 0, 0), // paf digging camera
                             i = new t.PerspectiveCamera(n, F / I, .01, 1e3);
 //                            i = new t.PerspectiveCamera(n, F / I, e.near, e.far);
                         return i.position.set(0, 0, 1), i.up = r, i
@@ -10042,7 +10042,7 @@ var requirejs, require, define;
                         e.image.width = t,
 						e.image.height = r,
 						ctx = e.image.getContext("2d"),
-//ctx.translate( t / 2, r / 2 );
+//ctx.translate( t / 2, r / 2 ); // paf digging rotation
 //ctx.rotate( -Math.PI / 2 );
 //ctx.translate( -t / 2, -r / 2 );
 						ctx.drawImage(this, 0, 0, t, r)
