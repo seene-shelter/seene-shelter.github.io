@@ -10028,9 +10028,9 @@ var requirejs, require, define;
                         e.image.width = t,
 						e.image.height = r,
 						ctx = e.image.getContext("2d"),
-ctx.translate( t / 2, r / 2 );
-ctx.rotate( -Math.PI / 2 );
-ctx.translate( -t / 2, -r / 2 );
+//ctx.translate( t / 2, r / 2 );
+//ctx.rotate( -Math.PI / 2 );
+//ctx.translate( -t / 2, -r / 2 );
 						ctx.drawImage(this, 0, 0, t, r)
                     } else e.image = this;
                     e.needsUpdate = !0, i.resolve(n)
