@@ -6959,7 +6959,7 @@ var requirejs, require, define;
                     function Y(e) {
                         e = e || {};
                         var n = e.fov || 32,
-                            r = e.up = new t.Vector3(-1, 0, 0),
+                            r = e.up = new t.Vector3(0, 1, 0),
                             i = new t.PerspectiveCamera(n, F / I, .01, 1e3);
                         return i.position.set(0, 0, 1), i.up = r, i
                     }
