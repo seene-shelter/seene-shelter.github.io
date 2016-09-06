@@ -10127,14 +10127,6 @@ depthImg.onload = function() {
 		console.log( d.depth.format, d.focus.focalDistance, near, far, depthImg.width, depthImg.height );
 
 		var minZ = 100000000000, maxZ = -100000000000;
-		var geometry = new THREE.BufferGeometry();
-		var size = w * h;
-
-		geometry.addAttribute( 'position', Float32Array, size, 3 );
-
-		var positions = geometry.attributes.position.array;
-
-		var adjustment = 10 * 960 / depthImg.width;
 		var ar = h / w;
 		var z = 0;
 
@@ -10149,7 +10141,6 @@ depthImg.onload = function() {
 
 				if( z < minZ ) minZ = z;
 				if( z > maxZ ) maxZ = z;
-
 			}
 		}
 
@@ -10200,8 +10191,8 @@ depthImg.onload = function() {
 					fov: nFov,
 					up: new t.Vector3(-1, 0, 0),
 					// new. TODO: use them
-					near: .001,
-					far: ( far + ( maxZ - minZ ) ) * adjustment
+					//near: .001,
+					//far: ( far + ( maxZ - minZ ) ) * adjustment
 				}
 			})
 		})
