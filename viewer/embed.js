@@ -10107,109 +10107,66 @@ var requirejs, require, define;
 				throw new Error("OEModelLoader: " + error)
 			});
 
-var settings = {
-	smoothRadius: 10,
-	quadSize: 4, // step over depthmap. maybe 1. but for now for speed
-	pointSize: 3,
-};
-
-var img = new Image();
+var depthImg = new Image();
 var deferred = this.$q.defer()
-img.onload = function() {
-		var s = 6;
-		var w = Math.round( poster_image.width / s ),
-			h = Math.round( poster_image.height / s );
+depthImg.onload = function() {
+		var w = depthImg.width,
+			h = depthImg.height;
 
 		var canvas = document.createElement( 'canvas' ),
 			ctx = canvas.getContext( '2d' );
-
-		canvas.width = img.width;
-		canvas.height = img.height;
-		ctx.drawImage( img, 0, 0 );
-
-		stackBlurCanvasRGB( canvas, 0, 0, canvas.width, canvas.height, parseInt( settings.smoothRadius, 10 ) );
-
-		var imageData = ctx.getImageData( 0, 0, canvas.width, canvas.height );
+		canvas.width = w;
+		canvas.height = h;
+		ctx.drawImage( depthImg, 0, 0 );
+		var depthData = ctx.getImageData( 0, 0, canvas.width, canvas.height );
 		var p = 0;
-
-		var colorCanvas = document.createElement( 'canvas' ),
-			colorCtx = colorCanvas.getContext( '2d' );
-
-		colorCanvas.width = poster_image.width;
-		colorCanvas.height = poster_image.height;
-		colorCtx.drawImage( poster_image, 0, 0 );
-		var colorImageData = colorCtx.getImageData( 0, 0, colorCanvas.width, colorCanvas.height );
-		var colorP = 0;
 
 		var far = parseFloat( d.depth.far ),
 			near = parseFloat( d.depth.near );
 
-		console.log( d.depth.format, d.focus.focalDistance, near, far, img.width, img.height );
+		console.log( d.depth.format, d.focus.focalDistance, near, far, depthImg.width, depthImg.height );
 
+		var minZ = 100000000000, maxZ = -100000000000;
 		var geometry = new THREE.BufferGeometry();
 		var size = w * h;
 
 		geometry.addAttribute( 'position', Float32Array, size, 3 );
-		geometry.addAttribute( 'customColor', Float32Array, size, 3 );
 
 		var positions = geometry.attributes.position.array;
-		var customColors = geometry.attributes.customColor.array;
 
-		var adjustment = 10 * 960 / img.width
-		var ar = img.height / img.width;
-		var scale = new THREE.Vector3( 1, 1, 1 );
-		var v = new THREE.Vector3();
-		var ptr = 0;
+		var adjustment = 10 * 960 / depthImg.width;
+		var ar = h / w;
+		var z = 0;
 
-		var minZ = 100000000000, maxZ = -100000000000;
+		// first round -- find minZ and maxZ
 		for( var y = 0; y < h; y++ ) {
 			for( var x = 0; x < w; x++ ) {
-				v.x = ( x - .5 * w ) / w;
-				v.y = ( y - .5 * h ) / h;
-				p = Math.round( ( ( -v.y + .5 ) ) * ( img.height - 1 ) ) * img.width * 4 + Math.round( ( ( v.x + .5 ) ) * ( img.width - 1 ) ) * 4;
-				var dn = imageData.data[ p ] / 255;
+				p = (y * depthImg.width + x) * 4;
+				var dn = depthData.data[ p ] / 255;
 				var rd = ( far * near ) / ( far - dn * ( far - near ) ); // RangeInverse
 				//var rd = ( 1 - dn ) * ( far - near ) + near; // RangeLinear
-				v.z = -rd ;
-				v.x *= rd * 1;
-				v.y *= rd * ar;
-				v.multiply( scale );
+				z = -rd ;
 
-				positions[ ptr + 0 ] = v.x;
-				positions[ ptr + 1 ] = v.y;
-				positions[ ptr + 2 ] = v.z;
-
-				customColors[ ptr + 0 ] = colorImageData.data[ p + 0 ] / 255;
-				customColors[ ptr + 1 ] = colorImageData.data[ p + 1 ] / 255;
-				customColors[ ptr + 2 ] = colorImageData.data[ p + 2 ] / 255;
-
-				ptr += 3;
-
-				if( v.z < minZ ) minZ = v.z;
-				if( v.z > maxZ ) maxZ = v.z;
+				if( z < minZ ) minZ = z;
+				if( z > maxZ ) maxZ = z;
 
 			}
 		}
 
 		var offset = ( maxZ - minZ ) / 2;
-		for( var j = 0; j < positions.length; j+=3 ) {
-			positions[ j + 2 ] += offset;
-		}
 
-		var step = settings.quadSize;
-		var planeGeometry = new THREE.PlaneGeometry( 1, 1, Math.round( w / step ), Math.round( h / step ) );
-		ptr = 0;
+		var planeGeometry = new THREE.PlaneGeometry( 1, 1, w, h);
+		var v = new THREE.Vector3();
 		for( var j = 0; j < planeGeometry.vertices.length; j++ ) {
 			v = planeGeometry.vertices[ j ];
-			p = Math.round( ( ( -v.y + .5 ) ) * ( img.height - 1 ) ) * img.width * 4 + Math.round( ( ( v.x + .5 ) ) * ( img.width - 1 ) ) * 4;
-			var dn = imageData.data[ p ] / 255;
+			p = Math.round( ( ( -v.y + .5 ) ) * ( depthImg.height - 1 ) ) * depthImg.width * 4 + Math.round( ( ( v.x + .5 ) ) * ( depthImg.width - 1 ) ) * 4;
+			var dn = depthData.data[ p ] / 255;
 			//console.log( v, p, dn );
 			var rd = ( far * near ) / ( far - dn * ( far - near ) ); // RangeInverse
 			//var rd = ( 1 - dn ) * ( far - near ) + near; // RangeLinear
 			v.z = -rd ;
 			v.x *= rd * 1;
 			v.y *= rd * ar;
-			v.multiply( scale );
 			v.z += offset;
 		}
 
@@ -10249,7 +10206,7 @@ img.onload = function() {
 			})
 		})
 }
-img.src = 'data:' + d.depth.mime + ';base64,' + d.depth.data;
+depthImg.src = 'data:' + d.depth.mime + ';base64,' + d.depth.data;
 
 return deferred.promise
         }, e.module("oe.resources.oemodels", []).provider("OeModelLoader", function() {
