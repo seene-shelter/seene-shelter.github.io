@@ -10126,11 +10126,11 @@ depthImg.onload = function() {
 
 		console.log( d.depth.format, d.focus.focalDistance, near, far, depthImg.width, depthImg.height );
 
-		var minZ = 100000000000, maxZ = -100000000000;
-		var ar = h / w;
+		//var minZ = 100000000000, maxZ = -100000000000;
 		var z = 0;
 
 		// first round -- find minZ and maxZ
+		/*
 		for( var y = 0; y < h; y++ ) {
 			for( var x = 0; x < w; x++ ) {
 				p = (y * depthImg.width + x) * 4;
@@ -10145,7 +10145,7 @@ depthImg.onload = function() {
 		}
 
 		var offset = ( maxZ - minZ ) / 2;
-
+*/
 		var planeGeometry = new THREE.PlaneGeometry( 1, 1, w, h);
 		var v = new THREE.Vector3();
 		for( var j = 0; j < planeGeometry.vertices.length; j++ ) {
@@ -10155,10 +10155,9 @@ depthImg.onload = function() {
 			//console.log( v, p, dn );
 			var rd = ( far * near ) / ( far - dn * ( far - near ) ); // RangeInverse
 			//var rd = ( 1 - dn ) * ( far - near ) + near; // RangeLinear
-			v.z = -rd ;
-			v.x *= rd * 1;
-			v.y *= rd * ar;
-			v.z += offset;
+			v.z = -rd; // + offset;
+			v.x *= rd;
+			v.y *= rd;
 		}
 
 		planeGeometry.computeFaceNormals();
@@ -10171,7 +10170,7 @@ depthImg.onload = function() {
 		//var nDistance = parseFloat( d.focus.focalDistance ) + offset * adjustment;
 		//material.uniforms.size.value = settings.pointSize * nDistance;
 //		var nFov = 0.35 * Math.atan2( .495 * w, near ) * 180 / Math.PI;
-		var nFov = 0.34 * Math.atan2( .495 * w, far ) * 180 / Math.PI; //digging here
+		var nFov = 0.32 * Math.atan2( .495 * w, near ) * 180 / Math.PI; //digging here
 
 		var o = _this.extractUrlBase(n).substr(0, n.lastIndexOf("/"));
 		var u = n.split(o + "/")[1]
