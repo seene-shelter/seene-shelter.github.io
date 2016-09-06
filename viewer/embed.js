@@ -10150,12 +10150,13 @@ depthImg.onload = function() {
 		var v = new THREE.Vector3();
 		for( var j = 0; j < planeGeometry.vertices.length; j++ ) {
 			v = planeGeometry.vertices[ j ];
-			p = Math.round( ( ( -v.y + .5 ) ) * ( depthImg.height - 1 ) ) * depthImg.width * 4 + Math.round( ( ( v.x + .5 ) ) * ( depthImg.width - 1 ) ) * 4;
+//			p = Math.round( ( ( -v.y + .5 ) ) * ( h - 1 ) ) * w * 4 + Math.round( ( ( v.x + .5 ) ) * ( w - 1 ) ) * 4;
+			p = Math.round( ( ( -v.y + .5 ) ) * ( h - 1 ) ) * w * 4 + Math.round( ( ( v.x + .5 ) ) * ( w - 1 ) ) * 4;
 			var dn = depthData.data[ p ] / 255;
 			//console.log( v, p, dn );
 			var rd = ( far * near ) / ( far - dn * ( far - near ) ); // RangeInverse
 			//var rd = ( 1 - dn ) * ( far - near ) + near; // RangeLinear
-			v.z = -rd; // + offset;
+			v.z = -(rd-1); // + offset;
 			v.x *= rd;
 			v.y *= rd;
 		}
@@ -10167,10 +10168,10 @@ depthImg.onload = function() {
 		// 360 * Math.atan2(.495 * s.camera_width, s.camera_fx) / Math.PI
 		// Jaume's clicktorelease viewer
 		//var nFov = 1 * Math.atan2( .5 * adjustment * near, d.focus.focalDistance ) * 180 / Math.PI;
-		//var nDistance = parseFloat( d.focus.focalDistance ) + offset * adjustment;
-		//material.uniforms.size.value = settings.pointSize * nDistance;
+		//digging here
 //		var nFov = 0.35 * Math.atan2( .495 * w, near ) * 180 / Math.PI;
-		var nFov = 0.32 * Math.atan2( .495 * w, near ) * 180 / Math.PI; //digging here
+		//var nFov = 42.429400834220495
+		var nFov = 0.59 * Math.atan2( .495 * w, 1 ) * 180 / Math.PI;
 
 		var o = _this.extractUrlBase(n).substr(0, n.lastIndexOf("/"));
 		var u = n.split(o + "/")[1]
@@ -10189,9 +10190,6 @@ depthImg.onload = function() {
 				cameraOptions: {
 					fov: nFov,
 					up: new t.Vector3(-1, 0, 0),
-					// new. TODO: use them
-					//near: .001,
-					//far: ( far + ( maxZ - minZ ) ) * adjustment
 				}
 			})
 		})
