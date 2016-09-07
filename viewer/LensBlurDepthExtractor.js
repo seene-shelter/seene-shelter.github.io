@@ -1,3 +1,9 @@
+/**
+ * LensBlurDepthExtractor.js Copyright 2014-2016 by Jaume Sanchez
+ * https://www.clicktorelease.com/code/depth-player/ in action
+ * https://www.clicktorelease.com/blog/creating-android-lens-blur-depth-viewer background story
+ * https://github.com/spite/android-lens-blur-depth-extractor some code
+ */
 (function() {
 
 	'use strict';
