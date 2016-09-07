@@ -11,13 +11,13 @@ Original JavaScript viewer with small changes can be used to show content.
 | What                           | Status  | Notes                                        |
 | -------------------------------|---------|----------------------------------------------|
 | Design the web app             | TODO    |
-| Viewer to work separately      | DONE    | http://seene-shelter.github.io/viewer/?url=%2Fw1024%2Fviewer%2Fposter.jpg
-| Viewer to accept export format | TODO    |
-| Implement the web app          | TODO    |
+| Viewer to work separately      | DONE    | http://seene-shelter.github.io/viewer/#/?url=https://farm9.staticflickr.com/8447/28629663783_9d20b4120d_o_d.jpg
+| Viewer to accept export format | DONE    |
+| Implement the web app          | 10%     | in progress
 | Get good domain name           | DONE    | github.io can host stuff for now, no need to pay or register |
 | Host the web app               | DONE    | http://seene-shelter.github.io/              |
-| Dropbox API                    | DONE    | [investigations](t/dropbox/readme.md), [test](http://seene-shelter.github.io/t/dropbox/)                       |
-| Flickr API                     | 20%    | [test](http://seene-shelter.github.io/t/flickr/)                |
+| Dropbox API                    | DONE    | [investigations, abandoned, see Flickr instead](t/dropbox/readme.md), [test](http://seene-shelter.github.io/t/dropbox/)                       |
+| Flickr API                     | 20%    | [test](https://seene-shelter.github.io/feed-testing-prototype.html)                |
 
 ## Design outline
 
@@ -30,7 +30,7 @@ Then: sees a feed of stuff from people she follows, can like/comment (for now by
 
 ## Viewer options
 
-* original viewer, patched to support JPG+XMP (going for this)
+* original viewer, patched to support JPG+XMP (DONE)
 * https://www.clicktorelease.com/code/depth-player/ (already supportes JPG+XMP)
 * new, based on same three.js
 * http://depthy.me (uses self-created 3d library pixi.js, and tricky webgl filtering -- potentially best for battery)
