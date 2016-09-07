@@ -10042,9 +10042,9 @@ var requirejs, require, define;
                         e.image.width = t,
 						e.image.height = r,
 						ctx = e.image.getContext("2d"),
-//ctx.translate( t / 2, r / 2 ); // paf digging rotation
-//ctx.rotate( -Math.PI / 2 );
-//ctx.translate( -t / 2, -r / 2 );
+ctx.translate( t / 2, r / 2 ); // paf digging rotation
+ctx.rotate( -Math.PI / 2 );
+ctx.translate( -t / 2, -r / 2 );
 						ctx.drawImage(this, 0, 0, t, r)
                     } else e.image = this;
                     e.needsUpdate = !0, i.resolve(n)
@@ -10151,7 +10151,7 @@ depthImg.onload = function() {
 		for( var j = 0; j < planeGeometry.vertices.length; j++ ) {
 			v = planeGeometry.vertices[ j ];
 //			p = Math.round( ( ( -v.y + .5 ) ) * ( h - 1 ) ) * w * 4 + Math.round( ( ( v.x + .5 ) ) * ( w - 1 ) ) * 4;
-			p = Math.round( ( ( -v.y + .5 ) ) * ( h - 1 ) ) * w * 4 + Math.round( ( ( v.x + .5 ) ) * ( w - 1 ) ) * 4;
+			p = Math.round( ( ( v.x + .5 ) ) * ( h - 1 ) ) * w * 4 + Math.round( ( ( v.y + .5 ) ) * ( w - 1 ) ) * 4;
 			var dn = depthData.data[ p ] / 255;
 			//console.log( v, p, dn );
 			var rd = ( far * near ) / ( far - dn * ( far - near ) ); // RangeInverse
