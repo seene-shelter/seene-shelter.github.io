@@ -47,13 +47,13 @@ Then: sees a feed of stuff from people she follows, can like/comment (for now by
 
 #### Plan and some tests
 
-# all strictly public, no actual Flickr password is required
-# initially as user to specify her flickr photostream URL (https://www.flickr.com/photos/thispaf/)
-# call https://www.flickr.com/services/api/flickr.urls.lookupUser.htm and resolve it to user_id (143913318@N02)
-# remember user_id in cookie (present some way to logout)
-# call https://www.flickr.com/services/api/flickr.photos.getContactsPublicPhotos.htm with user_id, count=500, include_self=true,
+* all strictly public, no actual Flickr password is required
+* initially as user to specify her flickr photostream URL (https://www.flickr.com/photos/thispaf/)
+* call https://www.flickr.com/services/api/flickr.urls.lookupUser.htm and resolve it to user_id (143913318@N02)
+* remember user_id in cookie (present some way to logout)
+* call https://www.flickr.com/services/api/flickr.photos.getContactsPublicPhotos.htm with user_id, count=500, include_self=true,
+* sample output
 ```
-#sample
 { "photos": { 
     "photo": [
       { "id": "29666745355", "secret": "6ab1d1327b", "server": "8067", "farm": 9, "owner": "44653378@N00", "username": "johndhodson", "title": " ", "ispublic": 1, "isfriend": 0, "isfamily": 0 },
@@ -62,16 +62,16 @@ Then: sees a feed of stuff from people she follows, can like/comment (for now by
       { "id": "28963335904", "secret": "37ff50e3e1", "server": "8248", "farm": 9, "owner": "144757151@N05", "username": "Jill Akhgar", "title": " ", "ispublic": 1, "isfriend": 0, "isfamily": 0 },
       { "id": "28965333633", "secret": "690b8a26cd", "server": "8441", "farm": 9, "owner": "144757151@N05", "username": "Jill Akhgar", "title": " ", "ispublic": 1, "isfriend": 0, "isfamily": 0 },
 ```
-# urls
-## https://www.flickr.com/photos/{$owner}/{$id} (photo page)
-## https://farm{$farm}.static.flickr.com/{$server}/{$id}_{$secret}.jpg (500x500)
-## TODO (original)
-# samples
-## https://www.flickr.com/photos/44653378@N00/29666745355 (photo page)
-## https://farm9.static.flickr.com/8067/29666745355_6ab1d1327b.jpg  (500x500)
-## https://c1.staticflickr.com/9/8067/29666745355_01e6da512c_o.jpg  (original)
-## useful $title
-# TODO: showhow filter this to only Seenes (exclude other stuff)
+* urls
+** https://www.flickr.com/photos/{$owner}/{$id} (photo page)
+** https://farm{$farm}.static.flickr.com/{$server}/{$id}_{$secret}.jpg (500x500)
+** TODO (original)
+* samples
+** https://www.flickr.com/photos/44653378@N00/29666745355 (photo page)
+** https://farm9.static.flickr.com/8067/29666745355_6ab1d1327b.jpg  (500x500)
+** https://c1.staticflickr.com/9/8067/29666745355_01e6da512c_o.jpg  (original)
+** useful $title
+* TODO: showhow filter this to only Seenes (exclude other stuff)
 
 ### Dropbox
 
