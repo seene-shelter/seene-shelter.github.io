@@ -78,7 +78,7 @@ Then: sees a feed of stuff from people she follows, can like/comment (for now by
 * https://www.flickr.com/photos/44653378@N00/29666745355 (photo page)
 * https://farm9.staticflickr.com/8067/29666745355_6ab1d1327b.jpg  (500x500)
 * https://farm9.staticflickr.com/8067/29666745355_01e6da512c_o.jpg  (original)
-* useful {title}  (and {tags} {views}, see below)
+* useful {title}  (and {description} {tags} {views}, see below)
 * [test in viewer](https://seene-shelter.github.io/viewer/#/?url=https://farm9.staticflickr.com/8067/29666745355_01e6da512c_o.jpg)
 * 
 [Additional test, lots of extras requested](https://api.flickr.com/services/rest/?method=flickr.photos.getContactsPublicPhotos&api_key=d8e561f63a10489788fe1e37f351d738&user_id=143913318%40N02&count=500&include_self=&extras=description,license,date_upload,date_taken,owner_name,icon_server,original_format,last_update,geo,tags,machine_tags,o_dims,views,media,path_alias,url_sq,url_t,url_s,url_q,url_m,url_n,url_z,url_c,url_l,url_o&format=json&nojsoncallback=1)
