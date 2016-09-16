@@ -82,3 +82,9 @@ ul#flickr li a.large span {
     opacity: 0.8;
 }
 
+#viewer_test {
+	position: relative;
+	width: 800px;
+	height: auto;
+}
+

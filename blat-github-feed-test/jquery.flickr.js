@@ -121,4 +121,3 @@ function jsonFlickrApi(rsp){
     if (rsp.photosets) flickr_photosets(rsp.photosets);
     else if (rsp.photoset) flickr_photoset(rsp.photoset);
 }
-
