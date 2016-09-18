@@ -8,16 +8,13 @@
             $(function() {
                 $('#my_flickr').flickr({
                     user_id: '44244432@N03',
-                    api_key: 'dd51633da24ca17a6c97e8cf7992b1fe',
+                    api_key: '1ac8d7ff45ff959a2cad44ea85953418',
                     speed: 10,
                     size: 'small',
                     count: 120
                 });
             });
         </script>
-		<div id="viewer_iframe">
-			
-		</div>
         <link rel="stylesheet" type="text/css" href="jquery.fancybox-1.3.1.css" />
         <link rel="stylesheet" type="text/css" href="jquery.flickr.css" />
         <style>
@@ -28,8 +25,9 @@
         </style>
     </head>
     <body>
-        <div id="my_flickr">
-			<iframe src="https://seene-shelter.github.io/viewer/index.html?url=https://seene-shelter.github.io/viewer/#/?url=https:%2F%2Fc7.staticflickr.com%2F9%2F8066%2F29189599710_5cff46eac9_o.jpg"></iframe>
+        <div class="media" id="my_flickr">
+			<iframe src="viewer_preload.html" position="absolute" height="431" width="431" frameborder="0" style="border:none" seamless style="width:431px; height:431px;" name="viewer_iframe";"></iframe>
+			<p><a href="https://seene-shelter.github.io/viewer/#/?url=https:%2F%2Fc7.staticflickr.com%2F9%2F8066%2F29189599710_5cff46eac9_o.jpg" target="viewer_iframe">Click Here to Load Viewer!</a></p>
 		</div>
     </body>
 </html>
