@@ -1,0 +1,40 @@
+<html>
+    <head>
+        <title>EasyView Flickr Seene Viewer</title>
+        <style>
+            * { margin: 0; padding: 0; }
+            body { background-color: white; }
+        </style>
+		<script type="text/javascript">
+            function buttonPress() {
+				var promptText = "Welcome Seene fans! Just paste the link to your " +
+				"Seene photo here, and click OK.";
+				var seeneURI = prompt(promptText);
+				console.log(seeneURI);
+				var viewerURI = "https://seene-shelter.github.io/viewer/#/?url=";
+				var fullPath = viewerURI + seeneURI;
+				document.getElementById("requested_seene").setAttribute("src",fullPath);
+				// https://www.flickr.com/photos/146378156@N07/29132585701/in/dateposted/
+				// https://c1.staticflickr.com/9/8419/29132585701_2ae37f6a59_o.jpg
+			}
+        </script>
+		<iframe src="viewer_preload.html" height="431" width="431" id="requested_seene";>
+		Script above will load the viewer here!
+		</iframe>
+    </head>
+    <body>
+		<button onclick="document.getElementById('easyview').innerHTML=buttonPress()">View Seene!</button>
+		<p id="easyview">
+		Easy Instructions: <br></br>
+		<br>
+			1. Go to the Seene Flickr group and click the Seene photo you want to view.<br></br>
+			2. Click the DOWNLOAD button in the bottom right corner, then right click 'Original' and copy address.<br></br>
+			3. Come back to the EasyView tab (this page) and click the button.<br></br>
+			4. Paste the address in the box.<br></br>
+			5. Enjoy your Seene! :-)
+		</br>
+		</p>
+		<br></br>
+    </body>
+</html>
+
